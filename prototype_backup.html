@@ -1,0 +1,1461 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>NEXORA - Sign up or log in</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700&family=Instrument+Sans:wght@400;500;600;700&display=swap"
+        rel="stylesheet">
+    <style>
+        :root {
+            --bg: #EAF1EF;
+            --ink: #0E1B20;
+            --deep: #12303A;
+            --deep-2: #1B4452;
+            --muted: #5A6F76;
+            --line: #CFDCD9;
+            --card: #FFFFFF;
+            --signal: #F2A93B;
+            --signal-ink: #3A2400;
+            --error: #C23B47;
+            --ok: #1F7A5A;
+            --display: "Bricolage Grotesque", "Trebuchet MS", system-ui, sans-serif;
+            --body: "Instrument Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
+        }
+
+        body[data-theme="dark"] {
+            --bg: #091115;
+            --ink: #EEF6F4;
+            --deep: #071A20;
+            --deep-2: #9AC3CC;
+            --muted: #9EB4BA;
+            --line: rgba(185, 211, 207, .16);
+            --card: #101E24;
+            --signal: #F2A93B;
+            --signal-ink: #2B1A00;
+            --error: #FF8D98;
+            --ok: #65D6A8;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+        }
+
+        html,
+        body {
+            min-height: 100%;
+        }
+
+        body {
+            font-family: var(--body);
+            color: var(--ink);
+            background:
+                radial-gradient(circle at 10% 8%, rgba(242, 169, 59, .18), transparent 30vw),
+                linear-gradient(135deg, #EAF1EF 0%, #F7FAF9 52%, #DDEBE8 100%);
+            -webkit-font-smoothing: antialiased;
+        }
+
+        body[data-theme="dark"] {
+            background:
+                radial-gradient(circle at 12% 8%, rgba(242, 169, 59, .16), transparent 30vw),
+                radial-gradient(circle at 82% 78%, rgba(154, 195, 204, .1), transparent 28vw),
+                linear-gradient(135deg, #071116 0%, #0C1B21 52%, #091317 100%);
+        }
+
+        button,
+        input {
+            font: inherit;
+        }
+
+        button {
+            cursor: pointer;
+        }
+
+        a {
+            color: var(--deep-2);
+            font-weight: 700;
+            text-underline-offset: 3px;
+        }
+
+        .page {
+            min-height: 100vh;
+            display: grid;
+            grid-template-columns: minmax(360px, .92fr) minmax(0, 1.08fr);
+        }
+
+        .story {
+            position: relative;
+            isolation: isolate;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            overflow: hidden;
+            padding: 46px 52px;
+            color: #E6F0EE;
+            background: linear-gradient(145deg, rgba(18, 48, 58, .98), rgba(10, 31, 38, .99));
+        }
+
+        .story::before {
+            content: "";
+            position: absolute;
+            right: -18%;
+            bottom: -18%;
+            width: 60%;
+            height: 46%;
+            background: radial-gradient(circle, rgba(242, 169, 59, .3), transparent 68%);
+            z-index: -1;
+        }
+
+        .brand {
+            display: inline-flex;
+            align-items: center;
+            gap: 11px;
+            font-family: var(--display);
+            font-size: 22px;
+            font-weight: 700;
+        }
+
+        .brand-mark {
+            width: 34px;
+            height: 34px;
+            flex: 0 0 34px;
+        }
+
+        .theme-toggle {
+            position: fixed;
+            top: 22px;
+            left: 22px;
+            z-index: 5;
+            display: inline-flex;
+            align-items: center;
+            gap: 9px;
+            min-height: 42px;
+            padding: 0 14px;
+            border: 1px solid rgba(18, 48, 58, .14);
+            border-radius: 999px;
+            color: var(--ink);
+            background: rgba(255, 255, 255, .72);
+            box-shadow: 0 18px 40px -30px rgba(18, 48, 58, .55);
+            backdrop-filter: blur(16px);
+            font-size: 13px;
+            font-weight: 800;
+        }
+
+        .theme-toggle:hover {
+            border-color: rgba(18, 48, 58, .28);
+            background: rgba(255, 255, 255, .9);
+        }
+
+        .theme-toggle svg {
+            width: 17px;
+            height: 17px;
+            flex: 0 0 17px;
+        }
+
+        body[data-theme="dark"] .theme-toggle {
+            border-color: rgba(230, 240, 238, .16);
+            color: #EEF6F4;
+            background: rgba(16, 30, 36, .78);
+            box-shadow: 0 18px 40px -30px rgba(0, 0, 0, .8);
+        }
+
+        body[data-theme="dark"] .theme-toggle:hover {
+            border-color: rgba(230, 240, 238, .3);
+            background: rgba(20, 39, 46, .92);
+        }
+
+        .story-copy {
+            margin-top: 72px;
+        }
+
+        .eyebrow {
+            display: inline-flex;
+            align-items: center;
+            min-height: 34px;
+            margin-bottom: 22px;
+            padding: 0 13px;
+            border: 1px solid rgba(230, 240, 238, .16);
+            border-radius: 999px;
+            color: #B9CED1;
+            background: rgba(255, 255, 255, .05);
+            font-size: 13px;
+            font-weight: 700;
+        }
+
+        .story h1 {
+            max-width: 12ch;
+            font-family: var(--display);
+            font-size: clamp(40px, 5.4vw, 68px);
+            font-weight: 700;
+            line-height: .96;
+        }
+
+        .lede {
+            max-width: 40ch;
+            margin-top: 22px;
+            color: #A9C2C6;
+            font-size: 17px;
+            line-height: 1.55;
+        }
+
+        .insight-card {
+            width: min(100%, 520px);
+            margin-top: 40px;
+            padding: 22px;
+            border: 1px solid rgba(230, 240, 238, .14);
+            border-radius: 18px;
+            background: rgba(255, 255, 255, .06);
+            box-shadow: 0 24px 70px rgba(0, 0, 0, .2);
+            backdrop-filter: blur(16px);
+        }
+
+        .insight-top {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 14px;
+            margin-bottom: 16px;
+        }
+
+        .metric span {
+            display: block;
+            color: #91ADB3;
+            font-size: 12px;
+            font-weight: 700;
+            text-transform: uppercase;
+        }
+
+        .metric strong {
+            display: block;
+            margin-top: 4px;
+            color: #FFFFFF;
+            font-size: 26px;
+        }
+
+        .pill {
+            display: inline-flex;
+            align-items: center;
+            height: 30px;
+            padding: 0 11px;
+            border-radius: 999px;
+            color: var(--signal-ink);
+            background: var(--signal);
+            font-size: 12px;
+            font-weight: 700;
+            white-space: nowrap;
+        }
+
+        .chart svg {
+            display: block;
+            width: 100%;
+            height: auto;
+            overflow: visible;
+        }
+
+        .grid-line {
+            stroke: rgba(169, 194, 198, .18);
+            stroke-width: 1;
+        }
+
+        .axis-text {
+            fill: #83A2A8;
+            font: 600 11px var(--body);
+        }
+
+        .trend-area {
+            fill: url(#fillGrad);
+            opacity: .95;
+        }
+
+        .trend {
+            fill: none;
+            stroke: var(--signal);
+            stroke-width: 4;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+            stroke-dasharray: 1;
+            stroke-dashoffset: 1;
+            animation: draw 1.7s .2s cubic-bezier(.5, .1, .2, 1) forwards;
+        }
+
+        .pt {
+            fill: var(--deep);
+            stroke: var(--signal);
+            stroke-width: 3;
+        }
+
+        .story-foot {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 12px;
+            margin-top: 44px;
+        }
+
+        .mini-stat {
+            padding-top: 14px;
+            border-top: 1px solid rgba(230, 240, 238, .16);
+        }
+
+        .mini-stat strong {
+            display: block;
+            color: #FFFFFF;
+            font-size: 18px;
+        }
+
+        .mini-stat span {
+            display: block;
+            margin-top: 4px;
+            color: #8EADB3;
+            font-size: 12px;
+            line-height: 1.35;
+        }
+
+        .auth {
+            display: grid;
+            place-items: center;
+            padding: 40px;
+        }
+
+        .auth-shell {
+            width: min(100%, 760px);
+            min-height: 620px;
+            display: grid;
+            grid-template-columns: 220px minmax(0, 1fr);
+            overflow: hidden;
+            border: 1px solid rgba(18, 48, 58, .12);
+            border-radius: 24px;
+            background: rgba(255, 255, 255, .78);
+            box-shadow: 0 1px 0 rgba(255, 255, 255, .7) inset, 0 30px 80px -38px rgba(18, 48, 58, .42);
+            backdrop-filter: blur(22px);
+        }
+
+        body[data-theme="dark"] .auth-shell {
+            border-color: rgba(230, 240, 238, .12);
+            background: rgba(12, 24, 29, .84);
+            box-shadow: 0 1px 0 rgba(255, 255, 255, .06) inset, 0 34px 90px -42px rgba(0, 0, 0, .9);
+        }
+
+        .mode-rail {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            gap: 24px;
+            padding: 24px;
+            border-right: 1px solid var(--line);
+            background: #F6FAF9;
+        }
+
+        body[data-theme="dark"] .mode-rail {
+            background: rgba(8, 18, 22, .86);
+        }
+
+        .rail-copy strong {
+            display: block;
+            font-family: var(--display);
+            font-size: 24px;
+            line-height: 1.08;
+        }
+
+        .rail-copy span {
+            display: block;
+            margin-top: 10px;
+            color: var(--muted);
+            font-size: 14px;
+            line-height: 1.45;
+        }
+
+        .mode-switch {
+            position: relative;
+            display: grid;
+            gap: 8px;
+            padding: 6px;
+            border: 1px solid var(--line);
+            border-radius: 16px;
+            background: #E4EEEB;
+        }
+
+        body[data-theme="dark"] .mode-switch {
+            background: rgba(230, 240, 238, .08);
+        }
+
+        .mode-thumb {
+            position: absolute;
+            left: 6px;
+            right: 6px;
+            top: 6px;
+            height: calc(50% - 10px);
+            border-radius: 12px;
+            background: #FFFFFF;
+            box-shadow: 0 10px 24px rgba(18, 48, 58, .14);
+            transition: transform .42s cubic-bezier(.65, .05, .25, 1);
+        }
+
+        body[data-theme="dark"] .mode-thumb {
+            background: rgba(230, 240, 238, .1);
+            box-shadow: 0 10px 24px rgba(0, 0, 0, .22);
+        }
+
+        .mode-switch[data-active="signup"] .mode-thumb {
+            transform: translateY(calc(100% + 8px));
+        }
+
+        .mode-switch button {
+            position: relative;
+            z-index: 1;
+            display: flex;
+            align-items: center;
+            min-height: 50px;
+            padding: 0 14px;
+            border: 0;
+            border-radius: 12px;
+            color: var(--muted);
+            background: transparent;
+            font-weight: 700;
+            text-align: left;
+            transition: color .24s ease;
+        }
+
+        .mode-switch button[aria-selected="true"] {
+            color: var(--ink);
+        }
+
+        .rail-note {
+            color: var(--muted);
+            font-size: 12px;
+            line-height: 1.45;
+        }
+
+        .auth-main {
+            min-width: 0;
+            display: grid;
+            align-content: center;
+            padding: 42px;
+        }
+
+        .viewport {
+            overflow: hidden;
+        }
+
+        .track {
+            display: grid;
+            grid-template-columns: 100% 100%;
+            transition: transform .5s cubic-bezier(.65, .05, .25, 1);
+        }
+
+        .track[data-active="signup"] {
+            transform: translateX(-100%);
+        }
+
+        .slide {
+            min-width: 0;
+            padding: 2px;
+        }
+
+        h2 {
+            font-family: var(--display);
+            font-size: 34px;
+            line-height: 1.04;
+        }
+
+        .sub {
+            max-width: 34ch;
+            margin-top: 8px;
+            color: var(--muted);
+            font-size: 15px;
+            line-height: 1.5;
+        }
+
+        form {
+            display: grid;
+            gap: 16px;
+            margin-top: 28px;
+        }
+
+        .field {
+            display: grid;
+            gap: 7px;
+        }
+
+        label {
+            color: #24383E;
+            font-size: 13px;
+            font-weight: 700;
+        }
+
+        body[data-theme="dark"] label {
+            color: #D7E7E4;
+        }
+
+        .input-wrap {
+            position: relative;
+        }
+
+        input[type="text"],
+        input[type="email"],
+        input[type="password"] {
+            width: 100%;
+            min-height: 48px;
+            padding: 12px 14px;
+            border: 1px solid #B9C9C6;
+            border-radius: 12px;
+            color: var(--ink);
+            background: #FFFFFF;
+            transition: border-color .2s, box-shadow .2s, background .2s;
+        }
+
+        body[data-theme="dark"] input[type="text"],
+        body[data-theme="dark"] input[type="email"],
+        body[data-theme="dark"] input[type="password"] {
+            border-color: rgba(185, 211, 207, .22);
+            color: #EEF6F4;
+            background: rgba(255, 255, 255, .055);
+        }
+
+        input[type="password"],
+        .input-wrap input[type="text"] {
+            padding-right: 76px;
+        }
+
+        input::placeholder {
+            color: #8FA3A8;
+        }
+
+        body[data-theme="dark"] input::placeholder {
+            color: #78939A;
+        }
+
+        input:focus {
+            outline: none;
+            border-color: var(--deep-2);
+            background: #FEFFFF;
+            box-shadow: 0 0 0 4px rgba(27, 68, 82, .14);
+        }
+
+        body[data-theme="dark"] input:focus {
+            border-color: #9AC3CC;
+            background: rgba(255, 255, 255, .075);
+            box-shadow: 0 0 0 4px rgba(154, 195, 204, .16);
+        }
+
+        input[aria-invalid="true"] {
+            border-color: var(--error);
+        }
+
+        .toggle-pw {
+            position: absolute;
+            top: 50%;
+            right: 7px;
+            transform: translateY(-50%);
+            min-width: 56px;
+            height: 34px;
+            border: 0;
+            border-radius: 9px;
+            color: var(--muted);
+            background: transparent;
+            font-size: 13px;
+            font-weight: 700;
+        }
+
+        .toggle-pw:hover {
+            color: var(--ink);
+            background: #EEF5F3;
+        }
+
+        body[data-theme="dark"] .toggle-pw:hover {
+            background: rgba(230, 240, 238, .09);
+        }
+
+        .err {
+            min-height: 16px;
+            color: var(--error);
+            font-size: 12px;
+            line-height: 1.25;
+        }
+
+        .row {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 14px;
+            color: var(--muted);
+            font-size: 14px;
+        }
+
+        .check {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            font-weight: 600;
+        }
+
+        .check input {
+            width: 17px;
+            height: 17px;
+            accent-color: var(--deep);
+        }
+
+        .auth-divider {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            color: var(--muted);
+            font-size: 12px;
+            font-weight: 700;
+            text-transform: uppercase;
+        }
+
+        .auth-divider::before,
+        .auth-divider::after {
+            content: "";
+            height: 1px;
+            flex: 1;
+            background: var(--line);
+        }
+
+        .google {
+            width: 100%;
+            min-height: 48px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            padding: 12px 16px;
+            border: 1px solid #B9C9C6;
+            border-radius: 12px;
+            color: var(--ink);
+            background: #FFFFFF;
+            font-weight: 700;
+            transition: transform .15s, border-color .2s, background .2s, box-shadow .2s;
+        }
+
+        body[data-theme="dark"] .google {
+            border-color: rgba(185, 211, 207, .24);
+            color: #EEF6F4;
+            background: rgba(255, 255, 255, .06);
+        }
+
+        .google:hover {
+            border-color: #8CA5A1;
+            background: #F7FBFA;
+            box-shadow: 0 10px 26px -22px rgba(18, 48, 58, .7);
+        }
+
+        body[data-theme="dark"] .google:hover {
+            border-color: rgba(154, 195, 204, .42);
+            background: rgba(255, 255, 255, .09);
+            box-shadow: 0 10px 26px -22px rgba(0, 0, 0, .9);
+        }
+
+        .google:active {
+            transform: translateY(1px);
+        }
+
+        .google svg {
+            width: 20px;
+            height: 20px;
+            flex: 0 0 20px;
+        }
+
+        .primary {
+            width: 100%;
+            min-height: 50px;
+            border: 0;
+            border-radius: 12px;
+            color: var(--signal-ink);
+            background: var(--signal);
+            font-size: 16px;
+            font-weight: 800;
+            transition: filter .2s, transform .1s, box-shadow .2s;
+        }
+
+        .primary:hover {
+            filter: brightness(1.04);
+            box-shadow: 0 14px 32px -24px rgba(58, 36, 0, .7);
+        }
+
+        .primary:active {
+            transform: translateY(1px);
+        }
+
+        .fine {
+            margin-top: 18px;
+            color: var(--muted);
+            font-size: 14px;
+            line-height: 1.5;
+        }
+
+        .status {
+            min-height: 22px;
+            margin-top: 14px;
+            color: var(--ok);
+            font-size: 14px;
+            font-weight: 700;
+        }
+
+        :focus-visible {
+            outline: 3px solid rgba(27, 68, 82, .35);
+            outline-offset: 2px;
+        }
+
+        @keyframes draw {
+            to {
+                stroke-dashoffset: 0;
+            }
+        }
+
+        @media (max-width: 980px) {
+            .page {
+                grid-template-columns: 1fr;
+            }
+
+            .story {
+                padding: 28px;
+            }
+
+            .story-copy {
+                margin-top: 38px;
+            }
+
+            .story h1 {
+                max-width: 18ch;
+                font-size: 38px;
+            }
+
+            .insight-card,
+            .story-foot {
+                display: none;
+            }
+
+            .auth {
+                padding: 24px 16px 42px;
+            }
+
+            .theme-toggle {
+                top: 16px;
+                left: 16px;
+            }
+        }
+
+        @media (max-width: 720px) {
+            .auth-shell {
+                min-height: 0;
+                grid-template-columns: 1fr;
+                border-radius: 18px;
+            }
+
+            .mode-rail {
+                padding: 18px;
+                border-right: 0;
+                border-bottom: 1px solid var(--line);
+            }
+
+            .rail-copy,
+            .rail-note {
+                display: none;
+            }
+
+            .mode-switch {
+                grid-template-columns: 1fr 1fr;
+                gap: 0;
+            }
+
+            .mode-thumb {
+                inset: 6px auto 6px 6px;
+                width: calc(50% - 6px);
+                height: auto;
+            }
+
+            .mode-switch[data-active="signup"] .mode-thumb {
+                transform: translateX(100%);
+            }
+
+            .mode-switch button {
+                justify-content: center;
+                min-height: 44px;
+                text-align: center;
+            }
+
+            .auth-main {
+                padding: 28px 20px 24px;
+            }
+
+            h2 {
+                font-size: 29px;
+            }
+
+            .row {
+                align-items: flex-start;
+                flex-direction: column;
+                gap: 8px;
+            }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            .trend {
+                animation: none;
+                stroke-dashoffset: 0;
+            }
+
+            .mode-thumb,
+            .track {
+                transition: none;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <button class="theme-toggle" type="button" id="theme-toggle" aria-label="Switch to dark mode" aria-pressed="false">
+        <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+            <path d="M21 13.2A7.4 7.4 0 0 1 10.8 3a9 9 0 1 0 10.2 10.2Z" stroke="currentColor" stroke-width="2"
+                stroke-linecap="round" stroke-linejoin="round" />
+        </svg>
+        <span>Dark mode</span>
+    </button>
+    <div class="page">
+        <aside class="story" aria-label="NEXORA product overview">
+            <div class="brand">
+                <svg class="brand-mark" viewBox="0 0 32 32" aria-hidden="true">
+                    <rect width="32" height="32" rx="8" fill="#F2A93B" />
+                    <path d="M6 22 L13 15 L18 19 L26 9" fill="none" stroke="#3A2400" stroke-width="3"
+                        stroke-linecap="round" stroke-linejoin="round" />
+                </svg>
+                NEXORA
+            </div>
+
+            <div class="story-copy">
+                <div class="eyebrow">Student success intelligence</div>
+                <h1>See where every student is heading.</h1>
+                <p class="lede">Grades, attendance and activity come together in one calm workspace, with an early
+                    signal when someone needs support.</p>
+
+                <div class="insight-card" role="img"
+                    aria-label="Progress chart showing student momentum recovering after an advisor notification">
+                    <div class="insight-top">
+                        <div class="metric">
+                            <span>Advisor impact</span>
+                            <strong>+18%</strong>
+                        </div>
+                        <div class="pill">Dip flagged</div>
+                    </div>
+                    <div class="chart">
+                        <svg viewBox="0 0 520 214">
+                            <defs>
+                                <linearGradient id="fillGrad" x1="0" y1="0" x2="0" y2="1">
+                                    <stop offset="0" stop-color="#F2A93B" stop-opacity=".32" />
+                                    <stop offset="1" stop-color="#F2A93B" stop-opacity="0" />
+                                </linearGradient>
+                            </defs>
+                            <line class="grid-line" x1="0" x2="520" y1="38" y2="38" />
+                            <line class="grid-line" x1="0" x2="520" y1="92" y2="92" />
+                            <line class="grid-line" x1="0" x2="520" y1="146" y2="146" />
+                            <line class="grid-line" x1="0" x2="520" y1="190" y2="190" />
+                            <text class="axis-text" x="6" y="209">Sep</text>
+                            <text class="axis-text" x="126" y="209">Oct</text>
+                            <text class="axis-text" x="256" y="209">Nov</text>
+                            <text class="axis-text" x="382" y="209">Dec</text>
+                            <text class="axis-text" x="494" y="209">Jan</text>
+                            <path class="trend-area" d="M12 152 L134 116 L260 160 L390 76 L508 38 L508 190 L12 190 Z" />
+                            <path class="trend" pathLength="1" d="M12 152 L134 116 L260 160 L390 76 L508 38" />
+                            <circle class="pt" cx="12" cy="152" r="6" />
+                            <circle class="pt" cx="134" cy="116" r="6" />
+                            <circle class="pt" cx="260" cy="160" r="6" />
+                            <circle class="pt" cx="390" cy="76" r="6" />
+                            <circle class="pt" cx="508" cy="38" r="6" />
+                        </svg>
+                    </div>
+                </div>
+            </div>
+
+            <div class="story-foot" aria-label="Platform highlights">
+                <div class="mini-stat">
+                    <strong>92%</strong>
+                    <span>attendance signals visible</span>
+                </div>
+                <div class="mini-stat">
+                    <strong>4.8x</strong>
+                    <span>faster advisor review</span>
+                </div>
+                <div class="mini-stat">
+                    <strong>24/7</strong>
+                    <span>progress monitoring</span>
+                </div>
+            </div>
+        </aside>
+
+        <main class="auth">
+            <section class="auth-shell" aria-label="NEXORA account access">
+                <aside class="mode-rail">
+                    <div class="rail-copy">
+                        <strong>Access your NEXORA workspace.</strong>
+                        <span>Use your school email or continue with Google after your password field.</span>
+                    </div>
+
+                    <div class="mode-switch" id="switch" data-active="login" role="tablist" aria-label="Account mode">
+                        <span class="mode-thumb" aria-hidden="true"></span>
+                        <button type="button" role="tab" id="tab-login" aria-controls="slide-login" aria-selected="true"
+                            data-target="login">Log in</button>
+                        <button type="button" role="tab" id="tab-signup" aria-controls="slide-signup"
+                            aria-selected="false" data-target="signup" tabindex="-1">Create account</button>
+                    </div>
+
+                    <p class="rail-note">Secure access for advisors, teachers and students.</p>
+                </aside>
+
+                <div class="auth-main">
+                    <div class="viewport">
+                        <div class="track" id="track" data-active="login">
+                            <section class="slide" id="slide-login" role="tabpanel" aria-labelledby="tab-login">
+                                <h2>Welcome back</h2>
+                                <p class="sub">Log in to review each student's latest progress and advisor alerts.</p>
+
+                                <form id="login-form" novalidate>
+                                    <div class="field">
+                                        <label for="li-email">Email address</label>
+                                        <input type="email" id="li-email" name="email" autocomplete="email"
+                                            placeholder="you@school.edu" required>
+                                        <div class="err" id="li-email-err" role="alert"></div>
+                                    </div>
+
+                                    <div class="field">
+                                        <label for="li-pw">Password</label>
+                                        <div class="input-wrap">
+                                            <input type="password" id="li-pw" name="password"
+                                                autocomplete="current-password" placeholder="Enter your password"
+                                                required>
+                                            <button type="button" class="toggle-pw" data-toggle="li-pw"
+                                                aria-label="Show password">Show</button>
+                                        </div>
+                                        <div class="err" id="li-pw-err" role="alert"></div>
+                                    </div>
+
+                                    <div class="row">
+                                        <label class="check"><input type="checkbox" name="remember"> Keep me logged
+                                            in</label>
+                                        <a href="#">Forgot password?</a>
+                                    </div>
+
+                                    <div class="auth-divider">or</div>
+                                    <button type="button" class="google" data-google>
+                                        <svg viewBox="0 0 48 48" aria-hidden="true">
+                                            <path fill="#EA4335"
+                                                d="M24 9.5c3.54 0 6.71 1.22 9.21 3.6l6.85-6.85C35.9 2.38 30.47 0 24 0 14.62 0 6.51 5.38 2.56 13.22l7.98 6.19C12.43 13.72 17.74 9.5 24 9.5z" />
+                                            <path fill="#4285F4"
+                                                d="M46.98 24.55c0-1.57-.15-3.09-.38-4.55H24v9.02h12.94c-.58 2.96-2.26 5.48-4.78 7.18l7.73 6c4.51-4.18 7.09-10.36 7.09-17.65z" />
+                                            <path fill="#FBBC05"
+                                                d="M10.53 28.59c-.48-1.45-.76-2.99-.76-4.59s.27-3.14.76-4.59l-7.98-6.19C.92 16.46 0 20.12 0 24c0 3.88.92 7.54 2.56 10.78l7.97-6.19z" />
+                                            <path fill="#34A853"
+                                                d="M24 48c6.48 0 11.93-2.13 15.89-5.81l-7.73-6c-2.15 1.45-4.92 2.3-8.16 2.3-6.26 0-11.57-4.22-13.47-9.91l-7.98 6.19C6.51 42.62 14.62 48 24 48z" />
+                                        </svg>
+                                        Continue with Google
+                                    </button>
+
+                                    <button type="submit" class="primary">Log in</button>
+                                </form>
+
+                                <p class="status" id="li-status" role="status"></p>
+                                <p class="fine">New to NEXORA? <a href="#" data-go="signup">Create an account</a></p>
+                            </section>
+
+                            <section class="slide" id="slide-signup" role="tabpanel" aria-labelledby="tab-signup" inert>
+                                <h2>Create your account</h2>
+                                <p class="sub">Set up a workspace for tracking progress, attendance and student support.
+                                </p>
+
+                                <form id="signup-form" novalidate>
+                                    <div class="field">
+                                        <label for="su-name">Full name</label>
+                                        <input type="text" id="su-name" name="name" autocomplete="name"
+                                            placeholder="Aarav Sharma" required>
+                                        <div class="err" id="su-name-err" role="alert"></div>
+                                    </div>
+
+                                    <div class="field">
+                                        <label for="su-email">Email address</label>
+                                        <input type="email" id="su-email" name="email" autocomplete="email"
+                                            placeholder="you@school.edu" required>
+                                        <div class="err" id="su-email-err" role="alert"></div>
+                                    </div>
+
+                                    <div class="field">
+                                        <label for="su-pw">Password</label>
+                                        <div class="input-wrap">
+                                            <input type="password" id="su-pw" name="password"
+                                                autocomplete="new-password" placeholder="At least 8 characters"
+                                                required>
+                                            <button type="button" class="toggle-pw" data-toggle="su-pw"
+                                                aria-label="Show password">Show</button>
+                                        </div>
+                                        <div class="err" id="su-pw-err" role="alert"></div>
+                                    </div>
+
+                                    <div class="auth-divider">or</div>
+                                    <button type="button" class="google" data-google>
+                                        <svg viewBox="0 0 48 48" aria-hidden="true">
+                                            <path fill="#EA4335"
+                                                d="M24 9.5c3.54 0 6.71 1.22 9.21 3.6l6.85-6.85C35.9 2.38 30.47 0 24 0 14.62 0 6.51 5.38 2.56 13.22l7.98 6.19C12.43 13.72 17.74 9.5 24 9.5z" />
+                                            <path fill="#4285F4"
+                                                d="M46.98 24.55c0-1.57-.15-3.09-.38-4.55H24v9.02h12.94c-.58 2.96-2.26 5.48-4.78 7.18l7.73 6c4.51-4.18 7.09-10.36 7.09-17.65z" />
+                                            <path fill="#FBBC05"
+                                                d="M10.53 28.59c-.48-1.45-.76-2.99-.76-4.59s.27-3.14.76-4.59l-7.98-6.19C.92 16.46 0 20.12 0 24c0 3.88.92 7.54 2.56 10.78l7.97-6.19z" />
+                                            <path fill="#34A853"
+                                                d="M24 48c6.48 0 11.93-2.13 15.89-5.81l-7.73-6c-2.15 1.45-4.92 2.3-8.16 2.3-6.26 0-11.57-4.22-13.47-9.91l-7.98 6.19C6.51 42.62 14.62 48 24 48z" />
+                                        </svg>
+                                        Sign up with Google
+                                    </button>
+
+                                    <button type="submit" class="primary">Create account</button>
+                                </form>
+
+                                <p class="status" id="su-status" role="status"></p>
+                                <p class="fine">Already have an account? <a href="#" data-go="login">Log in</a></p>
+                            </section>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <script>
+        (function () {
+            var themeToggle = document.getElementById('theme-toggle');
+            var themeLabel = themeToggle.querySelector('span');
+            var savedTheme = localStorage.getItem('nexora-theme');
+            var prefersDark = window.matchMedia &&
+                window.matchMedia('(prefers-color-scheme: dark)').matches;
+
+            function setTheme(theme) {
+                var isDark = theme === 'dark';
+                document.body.dataset.theme = theme;
+                themeToggle.setAttribute('aria-pressed', String(isDark));
+                themeToggle.setAttribute(
+                    'aria-label',
+                    isDark ? 'Switch to light mode' : 'Switch to dark mode'
+                );
+                themeLabel.textContent = isDark ? 'Light mode' : 'Dark mode';
+                localStorage.setItem('nexora-theme', theme);
+            }
+
+            setTheme(savedTheme || (prefersDark ? 'dark' : 'light'));
+
+            themeToggle.addEventListener('click', function () {
+                setTheme(document.body.dataset.theme === 'dark' ? 'light' : 'dark');
+            });
+
+            var sw = document.getElementById('switch');
+            var track = document.getElementById('track');
+            var tabs = sw.querySelectorAll('[role="tab"]');
+
+            var slides = {
+                login: document.getElementById('slide-login'),
+                signup: document.getElementById('slide-signup')
+            };
+
+            function show(which) {
+                sw.dataset.active = which;
+                track.dataset.active = which;
+
+                tabs.forEach(function (tab) {
+                    var active = tab.dataset.target === which;
+                    tab.setAttribute('aria-selected', String(active));
+                    tab.tabIndex = active ? 0 : -1;
+                });
+
+                Object.keys(slides).forEach(function (key) {
+                    if (key === which) {
+                        slides[key].removeAttribute('inert');
+                    } else {
+                        slides[key].setAttribute('inert', '');
+                    }
+                });
+            }
+
+            tabs.forEach(function (tab) {
+                tab.addEventListener('click', function () {
+                    show(tab.dataset.target);
+                });
+
+                tab.addEventListener('keydown', function (event) {
+                    if (
+                        event.key === 'ArrowRight' ||
+                        event.key === 'ArrowLeft' ||
+                        event.key === 'ArrowDown' ||
+                        event.key === 'ArrowUp'
+                    ) {
+                        event.preventDefault();
+                        var next = tab.dataset.target === 'login' ? 'signup' : 'login';
+                        show(next);
+                        document.getElementById('tab-' + next).focus();
+                    }
+                });
+            });
+
+            document.querySelectorAll('[data-go]').forEach(function (link) {
+                link.addEventListener('click', function (event) {
+                    event.preventDefault();
+                    show(link.dataset.go);
+                });
+            });
+
+            document.querySelectorAll('[data-toggle]').forEach(function (button) {
+                button.addEventListener('click', function () {
+                    var input = document.getElementById(button.dataset.toggle);
+                    var shouldShow = input.type === 'password';
+                    input.type = shouldShow ? 'text' : 'password';
+                    button.textContent = shouldShow ? 'Hide' : 'Show';
+                    button.setAttribute(
+                        'aria-label',
+                        shouldShow ? 'Hide password' : 'Show password'
+                    );
+                });
+            });
+
+            var emailRe = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+            var GOOGLE_SCRIPT_URL =
+                'https://script.google.com/macros/s/AKfycbwU2mBLE6Zn-xK64ziLs8kdBAdGMpgkaNCsid4SqpUJrfsj7YTsCma3myEARQKskztC/exec';
+
+            var firebaseClientPromise;
+
+            async function getFirebaseClient() {
+                if (!firebaseClientPromise) {
+                    firebaseClientPromise = Promise.all([
+                        import('./firebase.js'),
+                        import('https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js')
+                    ]).then(function (modules) {
+                        var firebase = modules[0];
+                        var authSdk = modules[1];
+
+                        if (!firebase.isConfigured || !firebase.auth) {
+                            var err = new Error('Firebase Authentication is not configured. Please add your project credentials in firebase.js.');
+                            err.code = 'auth/configuration-not-found';
+                            throw err;
+                        }
+
+                        return {
+                            auth: firebase.auth,
+                            provider: firebase.provider,
+                            signInWithPopup: authSdk.signInWithPopup,
+                            signInWithEmailAndPassword:
+                                authSdk.signInWithEmailAndPassword,
+                            createUserWithEmailAndPassword:
+                                authSdk.createUserWithEmailAndPassword,
+                            updateProfile: authSdk.updateProfile
+                        };
+                    }).catch(function (error) {
+                        firebaseClientPromise = null;
+                        throw error;
+                    });
+                }
+
+                return firebaseClientPromise;
+            }
+
+            function setErr(inputId, message) {
+                var input = document.getElementById(inputId);
+                var err = document.getElementById(inputId + '-err');
+
+                err.textContent = message || '';
+
+                if (message) {
+                    input.setAttribute('aria-invalid', 'true');
+                } else {
+                    input.removeAttribute('aria-invalid');
+                }
+
+                return !message;
+            }
+
+            function friendlyAuthError(error) {
+                var messages = {
+                    'auth/invalid-email': 'Please enter a valid email address.',
+                    'auth/invalid-credential': 'Incorrect email or password.',
+                    'auth/user-not-found': 'No account was found with this email.',
+                    'auth/wrong-password': 'Incorrect email or password.',
+                    'auth/email-already-in-use': 'An account already exists with this email.',
+                    'auth/weak-password': 'Please choose a stronger password.',
+                    'auth/operation-not-allowed':
+                        'This sign-in method is not enabled in Firebase.',
+                    'auth/popup-closed-by-user':
+                        'The Google sign-in window was closed before completion.',
+                    'auth/cancelled-popup-request':
+                        'A Google sign-in window is already open.',
+                    'auth/unauthorized-domain':
+                        'This domain is not authorized in Firebase Authentication.',
+                    'auth/network-request-failed':
+                        'Network error. Check your internet connection.',
+                    'auth/too-many-requests':
+                        'Too many attempts. Please wait and try again.',
+                    'auth/configuration-not-found':
+                        'Firebase is not configured yet. Please update firebase.js with your project credentials.',
+                    'auth/invalid-api-key':
+                        'Your Firebase API key is invalid.'
+                };
+
+                return messages[error.code] ||
+                    error.message ||
+                    'Authentication failed. Please try again.';
+            }
+
+            function sendToGoogleSheet(payload) {
+                if (!GOOGLE_SCRIPT_URL) {
+                    console.error('Google Apps Script URL is missing.');
+                    return Promise.resolve();
+                }
+
+                var data = Object.assign({
+                    page: 'nexora-auth',
+                    createdAt: new Date().toISOString()
+                }, payload);
+
+                // Never include passwords in this payload.
+                return fetch(GOOGLE_SCRIPT_URL, {
+                    method: 'POST',
+                    mode: 'no-cors',
+                    headers: {
+                        'Content-Type': 'text/plain;charset=utf-8'
+                    },
+                    body: JSON.stringify(data)
+                }).catch(function (error) {
+                    console.error('Google Sheets logging failed:', error);
+                });
+            }
+
+            function setGoogleButtonLoading(button, loading) {
+                if (loading) {
+                    button.dataset.originalText = button.textContent.trim();
+                    button.disabled = true;
+                    button.style.opacity = '.72';
+                    button.querySelector('svg').style.opacity = '.6';
+                    button.lastChild.textContent = ' Signing in...';
+                } else {
+                    button.disabled = false;
+                    button.style.opacity = '';
+                    button.querySelector('svg').style.opacity = '';
+                    button.lastChild.textContent =
+                        ' ' + (button.dataset.originalText || 'Continue with Google');
+                }
+            }
+
+            async function handleAuthSuccess(statusEl, user, actionName) {
+                if (!user || !user.uid) {
+                    statusEl.style.color = 'var(--error)';
+                    statusEl.textContent = 'Authentication could not be verified.';
+                    return;
+                }
+
+                var displayName = user.displayName || user.email || 'User';
+                statusEl.style.color = 'var(--ok)';
+
+                try {
+                    var controller = new AbortController();
+                    var timeoutId = setTimeout(function () { controller.abort(); }, 1500);
+                    await fetch('http://localhost:8501', { mode: 'no-cors', signal: controller.signal });
+                    clearTimeout(timeoutId);
+
+                    statusEl.textContent = actionName + ' successful! Redirecting to EduPulse AI Dashboard...';
+                    setTimeout(function () {
+                        window.location.href = 'http://localhost:8501';
+                    }, 800);
+                } catch (e) {
+                    statusEl.textContent = actionName + ' successful! Welcome, ' + displayName + '. (Run "streamlit run app.py" to launch the dashboard)';
+                }
+            }
+
+            async function signInWithGoogle(button) {
+                var slide = button.closest('.slide');
+                var status = slide.querySelector('.status');
+                var mode = slide.id === 'slide-signup' ? 'signup' : 'login';
+
+                status.style.color = '';
+                status.textContent = '';
+                setGoogleButtonLoading(button, true);
+
+                try {
+                    var client = await getFirebaseClient();
+
+                    var result = await client.signInWithPopup(
+                        client.auth,
+                        client.provider
+                    );
+
+                    var user = result.user;
+
+                    // Log the event; do not log the password.
+                    await sendToGoogleSheet({
+                        eventType: mode,
+                        authMethod: 'google',
+                        uid: user.uid,
+                        name: user.displayName || '',
+                        email: user.email || '',
+                        provider: 'google.com'
+                    });
+
+                    await handleAuthSuccess(status, user, 'Sign in');
+
+                } catch (error) {
+                    status.style.color = 'var(--error)';
+                    status.textContent = friendlyAuthError(error);
+                } finally {
+                    setGoogleButtonLoading(button, false);
+                }
+            }
+
+            // EMAIL/PASSWORD LOGIN
+            document.getElementById('login-form').addEventListener(
+                'submit',
+                async function (event) {
+                    event.preventDefault();
+
+                    var email = document.getElementById('li-email').value.trim();
+                    var password = document.getElementById('li-pw').value;
+                    var status = document.getElementById('li-status');
+                    var submitButton = event.currentTarget.querySelector(
+                        'button[type="submit"]'
+                    );
+
+                    var ok = true;
+
+                    ok = setErr(
+                        'li-email',
+                        emailRe.test(email) ? '' : 'Enter a valid email address.'
+                    ) && ok;
+
+                    ok = setErr(
+                        'li-pw',
+                        password ? '' : 'Enter your password.'
+                    ) && ok;
+
+                    if (!ok) {
+                        status.textContent = '';
+                        return;
+                    }
+
+                    status.style.color = '';
+                    status.textContent = 'Logging in...';
+                    submitButton.disabled = true;
+
+                    try {
+                        var client = await getFirebaseClient();
+
+                        var result = await client.signInWithEmailAndPassword(
+                            client.auth,
+                            email,
+                            password
+                        );
+
+                        var user = result.user;
+
+                        await sendToGoogleSheet({
+                            eventType: 'login',
+                            authMethod: 'email',
+                            uid: user.uid,
+                            name: user.displayName || '',
+                            email: user.email || '',
+                            provider: 'password'
+                        });
+
+                        await handleAuthSuccess(status, user, 'Login');
+
+                    } catch (error) {
+                        status.style.color = 'var(--error)';
+                        status.textContent = friendlyAuthError(error);
+                    } finally {
+                        submitButton.disabled = false;
+                    }
+                }
+            );
+
+            // EMAIL/PASSWORD SIGNUP
+            document.getElementById('signup-form').addEventListener(
+                'submit',
+                async function (event) {
+                    event.preventDefault();
+
+                    var name = document.getElementById('su-name').value.trim();
+                    var email = document.getElementById('su-email').value.trim();
+                    var password = document.getElementById('su-pw').value;
+                    var status = document.getElementById('su-status');
+
+                    var submitButton = event.currentTarget.querySelector(
+                        'button[type="submit"]'
+                    );
+
+                    var ok = true;
+
+                    ok = setErr(
+                        'su-name',
+                        name ? '' : 'Enter your full name.'
+                    ) && ok;
+
+                    ok = setErr(
+                        'su-email',
+                        emailRe.test(email) ? '' : 'Enter a valid email address.'
+                    ) && ok;
+
+                    ok = setErr(
+                        'su-pw',
+                        password.length >= 8 ? '' : 'Use at least 8 characters.'
+                    ) && ok;
+
+                    if (!ok) {
+                        status.textContent = '';
+                        return;
+                    }
+
+                    status.style.color = '';
+                    status.textContent = 'Creating your account...';
+                    submitButton.disabled = true;
+
+                    try {
+                        var client = await getFirebaseClient();
+
+                        var result = await client.createUserWithEmailAndPassword(
+                            client.auth,
+                            email,
+                            password
+                        );
+
+                        var user = result.user;
+
+                        await client.updateProfile(user, {
+                            displayName: name
+                        });
+
+                        await sendToGoogleSheet({
+                            eventType: 'signup',
+                            authMethod: 'email',
+                            uid: user.uid,
+                            name: name,
+                            email: user.email || email,
+                            provider: 'password'
+                        });
+
+                        await handleAuthSuccess(status, user, 'Account creation');
+
+                    } catch (error) {
+                        status.style.color = 'var(--error)';
+                        status.textContent = friendlyAuthError(error);
+                    } finally {
+                        submitButton.disabled = false;
+                    }
+                }
+            );
+
+            document.querySelectorAll('[data-google]').forEach(function (button) {
+                button.addEventListener('click', function () {
+                    signInWithGoogle(button);
+                });
+            });
+
+        })();
+    </script>
+</body>
+
+</html>

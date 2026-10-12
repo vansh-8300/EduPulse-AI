@@ -10,9 +10,10 @@ EduPulse AI is an end-to-end Machine Learning powered educational analytics plat
 
 | Link | Destination | Description |
 |---|---|---|
-| 🌐 **View Prototype** | [Open Prototype](https://vansh-8300.github.io/EduPulse-AI/) | Static GitHub Pages prototype |
+| 🌐 **View Prototype** | [Open Prototype](https://vansh-8300.github.io/EduPulse-AI/) | Interactive System Architecture Showcase |
 | 🚀 **Live Dashboard** | [Launch EduPulse AI](https://vansh-8300-edupulse-ai-app-upe9tn.streamlit.app/) | Interactive Streamlit application |
 | 💻 **View Source Code** | [GitHub Repository](https://github.com/vansh-8300/EduPulse-AI) | Project source code |
+| 📦 **Legacy Prototype** | [Open Backup](https://vansh-8300.github.io/EduPulse-AI/prototype_backup.html) | Archived prototype backup |
 
 > ℹ️ **Streamlit Deployment:** The live interactive dashboard is deployed and running on [Streamlit Community Cloud](https://vansh-8300-edupulse-ai-app-upe9tn.streamlit.app/).
 
@@ -67,7 +68,9 @@ EduPulse_AI/
 ├── generate_data.py        # Synthetic dataset generator script
 ├── train_model.py          # Machine learning model training script
 ├── requirements.txt        # Python dependency specifications
-├── index.html              # GitHub Pages presentation prototype entry point
+├── index.html              # Main GitHub Pages interactive architecture showcase
+├── architecture.html       # Standalone architecture showcase page
+├── prototype_backup.html   # Preserved backup of legacy presentation prototype
 ├── .gitignore              # Git ignore rules for virtualenvs & cache
 ├── README.md               # Project documentation & setup guide
 ├── data/
