@@ -1,0 +1,829 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EduPulse AI Architecture — System Architecture & Workflow Showcase</title>
+    <meta name="description" content="Technical architecture and end-to-end data pipeline showcase for EduPulse AI: Smart Campus Analytics & Student Success Platform. Built for hackathon judges and technical evaluation.">
+    <link rel="icon" href="https://img.icons8.com/isometric/96/000000/graduation-cap.png" type="image/png">
+    <link rel="stylesheet" href="assets/architecture.css">
+</head>
+<body>
+
+    <!-- ==========================================================================
+         TOP NAVIGATION BAR (NO LOGIN / AUTH BUTTONS)
+         ========================================================================== -->
+    <header class="navbar">
+        <div class="container nav-container">
+            <a href="#hero" class="nav-brand">
+                <div class="brand-icon">🎓</div>
+                <div>
+                    <div class="brand-title">EduPulse AI</div>
+                    <div class="brand-subtitle">Architecture Showcase</div>
+                </div>
+            </a>
+            <nav>
+                <ul class="nav-menu">
+                    <li><a href="#diagram" class="nav-link">System Diagram</a></li>
+                    <li><a href="#workflow" class="nav-link">Workflow</a></li>
+                    <li><a href="#pipeline" class="nav-link">AI Pipeline</a></li>
+                    <li><a href="#simulator" class="nav-link">What-If Simulation</a></li>
+                    <li><a href="#stack" class="nav-link">Tech Stack</a></li>
+                    <li><a href="#summary" class="nav-link">Summary</a></li>
+                </ul>
+            </nav>
+            <div class="nav-actions">
+                <a href="#diagram" class="nav-cta-btn">
+                    <span>Explore Architecture</span>
+                    <span>↓</span>
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <!-- ==========================================================================
+         SECTION A: HERO SECTION
+         ========================================================================== -->
+    <section id="hero" class="hero-section">
+        <div class="container hero-header">
+            <div class="hero-badge-wrapper">
+                <span class="badge badge-live">
+                    <span class="pulse-dot"></span>
+                    <span>SYSTEM ARCHITECTURE SHOWCASE</span>
+                </span>
+            </div>
+            <h1 class="hero-title text-gradient">EduPulse AI Architecture</h1>
+            <p class="hero-subtitle">From student data to predictive insights and actionable interventions.</p>
+
+            <!-- 3 Metadata Cards Required -->
+            <div class="hero-meta-grid">
+                <div class="hero-meta-card">
+                    <div class="meta-card-icon">📊</div>
+                    <h3 class="meta-card-title">AI-Powered Student Analytics</h3>
+                    <p class="meta-card-desc">Multi-dimensional cohort KPI tracking, Z-score indicator impact scoring, and department-level academic risk distribution.</p>
+                </div>
+                <div class="hero-meta-card">
+                    <div class="meta-card-icon">🧠</div>
+                    <h3 class="meta-card-title">Machine Learning Risk Prediction</h3>
+                    <p class="meta-card-desc">Balanced 120-tree Random Forest classifier achieving 90.0% evaluation accuracy across High, Medium, and Low risk tiers.</p>
+                </div>
+                <div class="hero-meta-card">
+                    <div class="meta-card-icon">🛠️</div>
+                    <h3 class="meta-card-title">Data-Driven Student Support</h3>
+                    <p class="meta-card-desc">Metric-triggered prescriptive intervention engine and real-time What-If scenario simulator for proactive retention.</p>
+                </div>
+            </div>
+
+            <!-- Primary Action Button (No login/auth controls) -->
+            <div class="hero-actions">
+                <a href="#diagram" class="btn-primary" id="btnExploreArch">
+                    <span>Explore Architecture</span>
+                    <span>↓</span>
+                </a>
+                <a href="#workflow" class="btn-secondary">
+                    <span>View End-to-End Workflow</span>
+                    <span>→</span>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==========================================================================
+         SECTION B: SYSTEM ARCHITECTURE DIAGRAM
+         ========================================================================== -->
+    <section id="diagram" class="section">
+        <div class="container">
+            <div class="section-header">
+                <div class="section-tag">
+                    <span class="badge">SYSTEM BLUEPRINT</span>
+                </div>
+                <h2 class="section-title">End-to-End System Architecture</h2>
+                <p class="section-description">A multi-tiered, connected architecture transforming disparate student signals into calibrated risk predictions, actionable academic roadmaps, and measurable campus retention.</p>
+            </div>
+
+            <div class="diagram-container">
+                <div class="diagram-toolbar">
+                    <div class="diagram-legend">
+                        <div class="legend-item">
+                            <div class="legend-color" style="background: #10B981;"></div>
+                            <span>Active Implemented Layer</span>
+                        </div>
+                        <div class="legend-item">
+                            <div class="legend-color" style="background: rgba(95, 242, 165, 0.4); border: 1px dashed #5FF2A5;"></div>
+                            <span>Future Roadmap Ingestion</span>
+                        </div>
+                    </div>
+                    <div class="diagram-hint">
+                        <span>💡 Click any layer below to inspect technical specifications</span>
+                    </div>
+                </div>
+
+                <div class="arch-layers-stack">
+                    <!-- LAYER 1: DATA SOURCES -->
+                    <div class="arch-layer-card active-layer" data-layer="layer1">
+                        <div class="layer-header-row">
+                            <div class="layer-title-group">
+                                <div class="layer-badge">01</div>
+                                <h3 class="layer-title">LAYER 1: DATA SOURCES & INGESTION</h3>
+                            </div>
+                            <span class="layer-meta-tag">8 Core Ingestion Predictors</span>
+                        </div>
+                        <div class="layer-components-grid">
+                            <div class="comp-pill">
+                                <span class="comp-icon">📈</span>
+                                <div class="comp-content">
+                                    <h4>Academic Performance</h4>
+                                    <p>GPA (4.0 scale), Midterm Score (%)</p>
+                                </div>
+                            </div>
+                            <div class="comp-pill">
+                                <span class="comp-icon">📅</span>
+                                <div class="comp-content">
+                                    <h4>Attendance Records</h4>
+                                    <p>Class & Lecture Attendance Rate (%)</p>
+                                </div>
+                            </div>
+                            <div class="comp-pill">
+                                <span class="comp-icon">💻</span>
+                                <div class="comp-content">
+                                    <h4>LMS Engagement</h4>
+                                    <p>Online Portal Activity & Logins</p>
+                                </div>
+                            </div>
+                            <div class="comp-pill">
+                                <span class="comp-icon">📝</span>
+                                <div class="comp-content">
+                                    <h4>Assignment Completion</h4>
+                                    <p>Homework & Lab Submission Rate (%)</p>
+                                </div>
+                            </div>
+                            <div class="comp-pill">
+                                <span class="comp-icon">🧘</span>
+                                <div class="comp-content">
+                                    <h4>Study Effort & Well-Being</h4>
+                                    <p>Study Hours/Wk, Class Participation, Stress (1-10)</p>
+                                </div>
+                            </div>
+                            <div class="comp-pill roadmap-pill">
+                                <span class="comp-icon">🔮</span>
+                                <div class="comp-content">
+                                    <h4>Student Feedback & Skills</h4>
+                                    <p>Planned Enterprise LMS Connector (Roadmap)</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- CONNECTOR 1 -> 2 -->
+                    <div class="layer-connector">
+                        <div class="connector-line"></div>
+                        <div class="connector-pulse">↓</div>
+                    </div>
+
+                    <!-- LAYER 2: DATA PROCESSING -->
+                    <div class="arch-layer-card" data-layer="layer2">
+                        <div class="layer-header-row">
+                            <div class="layer-title-group">
+                                <div class="layer-badge">02</div>
+                                <h3 class="layer-title">LAYER 2: DATA PROCESSING & PIPELINE</h3>
+                            </div>
+                            <span class="layer-meta-tag">src/data_loader.py & generate_data.py</span>
+                        </div>
+                        <div class="layer-components-grid">
+                            <div class="comp-pill">
+                                <span class="comp-icon">⚡</span>
+                                <div class="comp-content">
+                                    <h4>Data Loading & Caching</h4>
+                                    <p>Streamlit @st.cache_data fast memory fetch</p>
+                                </div>
+                            </div>
+                            <div class="comp-pill">
+                                <span class="comp-icon">🛡️</span>
+                                <div class="comp-content">
+                                    <h4>Data Cleaning & Validation</h4>
+                                    <p>Schema enforcement, null & type checks</p>
+                                </div>
+                            </div>
+                            <div class="comp-pill">
+                                <span class="comp-icon">🔢</span>
+                                <div class="comp-content">
+                                    <h4>Feature Preparation</h4>
+                                    <p>Vector mapping across FEATURE_COLS</p>
+                                </div>
+                            </div>
+                            <div class="comp-pill">
+                                <span class="comp-icon">🔍</span>
+                                <div class="comp-content">
+                                    <h4>Cohort Filtering & Aggregation</h4>
+                                    <p>Major, Grade, Risk Tier, and ID searches</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- CONNECTOR 2 -> 3 -->
+                    <div class="layer-connector">
+                        <div class="connector-line"></div>
+                        <div class="connector-pulse">↓</div>
+                    </div>
+
+                    <!-- LAYER 3: MACHINE LEARNING -->
+                    <div class="arch-layer-card" data-layer="layer3">
+                        <div class="layer-header-row">
+                            <div class="layer-title-group">
+                                <div class="layer-badge">03</div>
+                                <h3 class="layer-title">LAYER 3: MACHINE LEARNING INFERENCE</h3>
+                            </div>
+                            <span class="layer-meta-tag">models/risk_model.pkl (SHA-256 Verified)</span>
+                        </div>
+                        <div class="layer-components-grid">
+                            <div class="comp-pill">
+                                <span class="comp-icon">🌲</span>
+                                <div class="comp-content">
+                                    <h4>Random Forest Classifier</h4>
+                                    <p>120 estimators, depth 10, class-balanced</p>
+                                </div>
+                            </div>
+                            <div class="comp-pill">
+                                <span class="comp-icon">🎯</span>
+                                <div class="comp-content">
+                                    <h4>Student Risk Classification</h4>
+                                    <p>3-Tier output: High, Medium, Low Risk</p>
+                                </div>
+                            </div>
+                            <div class="comp-pill">
+                                <span class="comp-icon">📊</span>
+                                <div class="comp-content">
+                                    <h4>Risk Probabilities</h4>
+                                    <p>Calibrated multi-class probability distribution</p>
+                                </div>
+                            </div>
+                            <div class="comp-pill">
+                                <span class="comp-icon">🏆</span>
+                                <div class="comp-content">
+                                    <h4>Success Score & Indicators</h4>
+                                    <p>0–100 success index + Z-score feature impact</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- CONNECTOR 3 -> 4 -->
+                    <div class="layer-connector">
+                        <div class="connector-line"></div>
+                        <div class="connector-pulse">↓</div>
+                    </div>
+
+                    <!-- LAYER 4: ANALYTICS & DECISION SUPPORT -->
+                    <div class="arch-layer-card" data-layer="layer4">
+                        <div class="layer-header-row">
+                            <div class="layer-title-group">
+                                <div class="layer-badge">04</div>
+                                <h3 class="layer-title">LAYER 4: ANALYTICS & DECISION SUPPORT</h3>
+                            </div>
+                            <span class="layer-meta-tag">app.py (Streamlit Analytics Interface)</span>
+                        </div>
+                        <div class="layer-components-grid">
+                            <div class="comp-pill">
+                                <span class="comp-icon">📊</span>
+                                <div class="comp-content">
+                                    <h4>Cohort Analytics Dashboard</h4>
+                                    <p>Real-time cohort KPIs, risk distribution & scatter</p>
+                                </div>
+                            </div>
+                            <div class="comp-pill">
+                                <span class="comp-icon">🎓</span>
+                                <div class="comp-content">
+                                    <h4>Student Risk Predictor</h4>
+                                    <p>Individual student probability breakdown</p>
+                                </div>
+                            </div>
+                            <div class="comp-pill">
+                                <span class="comp-icon">👤</span>
+                                <div class="comp-content">
+                                    <h4>Student Deep Dive</h4>
+                                    <p>Metric radar chart & placement readiness score</p>
+                                </div>
+                            </div>
+                            <div class="comp-pill">
+                                <span class="comp-icon">🛠️</span>
+                                <div class="comp-content">
+                                    <h4>AI Recommendations</h4>
+                                    <p>Context-aware prioritized recovery roadmaps</p>
+                                </div>
+                            </div>
+                            <div class="comp-pill">
+                                <span class="comp-icon">🔮</span>
+                                <div class="comp-content">
+                                    <h4>What-If Simulator</h4>
+                                    <p>Real-time parameter sensitivity testing</p>
+                                </div>
+                            </div>
+                            <div class="comp-pill">
+                                <span class="comp-icon">📁</span>
+                                <div class="comp-content">
+                                    <h4>Student Data Explorer</h4>
+                                    <p>Multi-attribute directory & CSV export</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- CONNECTOR 4 -> 5 -->
+                    <div class="layer-connector">
+                        <div class="connector-line"></div>
+                        <div class="connector-pulse">↓</div>
+                    </div>
+
+                    <!-- LAYER 5: OUTCOMES -->
+                    <div class="arch-layer-card" data-layer="layer5">
+                        <div class="layer-header-row">
+                            <div class="layer-title-group">
+                                <div class="layer-badge">05</div>
+                                <h3 class="layer-title">LAYER 5: INSTITUTIONAL OUTCOMES & INTERVENTIONS</h3>
+                            </div>
+                            <span class="layer-meta-tag">src/recommendations.py & Advisory Action</span>
+                        </div>
+                        <div class="layer-components-grid">
+                            <div class="comp-pill">
+                                <span class="comp-icon">🚨</span>
+                                <div class="comp-content">
+                                    <h4>Early Risk Identification</h4>
+                                    <p>Proactive detection prior to midterm examination failure</p>
+                                </div>
+                            </div>
+                            <div class="comp-pill">
+                                <span class="comp-icon">📋</span>
+                                <div class="comp-content">
+                                    <h4>Student Support Recommendations</h4>
+                                    <p>Personalized recovery roadmaps (Advisors, Tutoring, LMS)</p>
+                                </div>
+                            </div>
+                            <div class="comp-pill">
+                                <span class="comp-icon">🏫</span>
+                                <div class="comp-content">
+                                    <h4>Cohort-Level Insights</h4>
+                                    <p>Departmental retention trends & cohort benchmarking</p>
+                                </div>
+                            </div>
+                            <div class="comp-pill">
+                                <span class="comp-icon">🎯</span>
+                                <div class="comp-content">
+                                    <h4>Data-Driven Academic Intervention</h4>
+                                    <p>Measurable student success retention outcomes</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Interactive Layer Inspector Drawer -->
+                <div class="layer-inspector-panel active" id="layerInspector">
+                    <div class="inspector-grid">
+                        <div class="inspector-col">
+                            <h5 id="inspectTitle">Layer 1: Data Sources & Ingestion Points</h5>
+                            <p id="inspectMeta" style="font-family: var(--font-mono); font-size: 0.76rem; color: var(--accent-mint); margin-bottom: 0.5rem;">Raw Student Academic, Behavioral & Engagement Ingestion</p>
+                            <p id="inspectDesc">Captures multi-dimensional student performance and interaction signals from campus administrative and digital learning environments.</p>
+                            <div style="margin-top: 0.8rem;">
+                                <h5 style="font-size: 0.72rem;">Technical Inputs:</h5>
+                                <p id="inspectInputs">Student course records, LMS portal activity logs, lecture attendance scanner logs, assignment submission timestamps, and student wellness self-reports.</p>
+                            </div>
+                        </div>
+                        <div class="inspector-col">
+                            <h5>Implementation Artifacts & Code:</h5>
+                            <p><strong>Files:</strong> <code id="inspectFile" style="color: var(--accent-mint);">data/students_1200.csv & generate_data.py</code></p>
+                            <p style="margin-top: 0.3rem;"><strong>Key Functions:</strong> <code id="inspectFuncs" style="color: var(--accent-mint);">generate_student_dataset(), load_student_data()</code></p>
+                            <div style="margin-top: 0.8rem;">
+                                <h5 style="font-size: 0.72rem;">Data Outputs & Destination:</h5>
+                                <p id="inspectOutputs">Tabular raw student profile records containing 8 core features plus demographic identifiers (Student ID, Name, Major, Grade Level, Tuition Status).</p>
+                            </div>
+                            <div style="margin-top: 0.8rem;">
+                                <h5 style="font-size: 0.72rem;">Engineering Notes:</h5>
+                                <p id="inspectNotes">Project uses 1,200 synthetic student records with correlated Gaussian distributions for hackathon demonstration. Future roadmap includes LMS LTI integration (Canvas/Blackboard).</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==========================================================================
+         SECTION C: END-TO-END WORKFLOW
+         ========================================================================== -->
+    <section id="workflow" class="section">
+        <div class="container">
+            <div class="section-header">
+                <div class="section-tag">
+                    <span class="badge">EXECUTION CYCLE</span>
+                </div>
+                <h2 class="section-title">End-to-End Operational Workflow</h2>
+                <p class="section-description">A systematic 6-step data lifecycle tracing how raw educational records flow through validation, algorithmic inference, visual analytics, and targeted advisor intervention.</p>
+            </div>
+
+            <div class="workflow-grid">
+                <!-- STEP 1 -->
+                <div class="workflow-card">
+                    <div class="workflow-card-header">
+                        <div class="workflow-step-num">1</div>
+                        <span class="workflow-tag">Ingestion</span>
+                    </div>
+                    <h3 class="workflow-title">Collect student records</h3>
+                    <p class="workflow-desc">Campus information systems capture multi-dimensional student indicators: GPA, attendance rates, LMS digital engagement, assignment completions, study habits, and stress surveys.</p>
+                    <span class="workflow-code-pill">data/students_1200.csv</span>
+                </div>
+
+                <!-- STEP 2 -->
+                <div class="workflow-card">
+                    <div class="workflow-card-header">
+                        <div class="workflow-step-num">2</div>
+                        <span class="workflow-tag">Processing</span>
+                    </div>
+                    <h3 class="workflow-title">Load and prepare student features</h3>
+                    <p class="workflow-desc">The ingestion pipeline verifies data integrity, applies range constraints, extracts the 8 model predictor columns, and caches cohort distributions in memory using Streamlit data caching.</p>
+                    <span class="workflow-code-pill">src/data_loader.py → load_student_data()</span>
+                </div>
+
+                <!-- STEP 3 -->
+                <div class="workflow-card">
+                    <div class="workflow-card-header">
+                        <div class="workflow-step-num">3</div>
+                        <span class="workflow-tag">Model Loading</span>
+                    </div>
+                    <h3 class="workflow-title">Apply the trained ML model</h3>
+                    <p class="workflow-desc">Loads the serialized Scikit-Learn Random Forest model artifact (120 decision trees, depth 10) after cryptographically verifying its SHA-256 hash checksum for artifact integrity.</p>
+                    <span class="workflow-code-pill">src/model_utils.py → load_model()</span>
+                </div>
+
+                <!-- STEP 4 -->
+                <div class="workflow-card">
+                    <div class="workflow-card-header">
+                        <div class="workflow-step-num">4</div>
+                        <span class="workflow-tag">Inference</span>
+                    </div>
+                    <h3 class="workflow-title">Estimate student risk and indicators</h3>
+                    <p class="workflow-desc">Executes predict() and predict_proba() to derive class probabilities (High, Medium, Low), computes the 0–100 Student Success Score, and benchmarks feature Z-scores against cohort means.</p>
+                    <span class="workflow-code-pill">src/model_utils.py → predict_student_risk()</span>
+                </div>
+
+                <!-- STEP 5 -->
+                <div class="workflow-card">
+                    <div class="workflow-card-header">
+                        <div class="workflow-step-num">5</div>
+                        <span class="workflow-tag">Analytics</span>
+                    </div>
+                    <h3 class="workflow-title">Present insights through analytics</h3>
+                    <p class="workflow-desc">Renders interactive Plotly visual analytics in the Streamlit application: cohort KPIs, risk distribution bar charts, GPA vs Attendance scatters, and student search directories.</p>
+                    <span class="workflow-code-pill">app.py → Plotly Theme & Cohort KPIs</span>
+                </div>
+
+                <!-- STEP 6 -->
+                <div class="workflow-card">
+                    <div class="workflow-card-header">
+                        <div class="workflow-step-num">6</div>
+                        <span class="workflow-tag">Action</span>
+                    </div>
+                    <h3 class="workflow-title">Generate recommendations & interventions</h3>
+                    <p class="workflow-desc">The recommendation engine matches specific metrics below threshold to prioritized recovery actions, and the What-If simulator enables advisors to test recovery parameter adjustments.</p>
+                    <span class="workflow-code-pill">src/recommendations.py → generate_recommendations()</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==========================================================================
+         SECTION E: AI MODEL & DATA PIPELINE
+         ========================================================================== -->
+    <section id="pipeline" class="section">
+        <div class="container">
+            <div class="section-header">
+                <div class="section-tag">
+                    <span class="badge">PIPELINE ARCHITECTURE</span>
+                </div>
+                <h2 class="section-title">AI Model & Data Pipeline</h2>
+                <p class="section-description">A transparent trace of algorithmic inference: from synthetic student distributions to calibrated probability vectors, prescriptive recommendations, and live visual dashboards.</p>
+            </div>
+
+            <div class="pipeline-container">
+                <!-- Stepper Node Buttons -->
+                <div class="pipeline-stepper">
+                    <div class="pipeline-step-node active-node" data-step="0">
+                        <div class="node-circle">📁</div>
+                        <div class="node-label">1. Student Dataset</div>
+                    </div>
+                    <div class="pipeline-step-node" data-step="1">
+                        <div class="node-circle">⚙️</div>
+                        <div class="node-label">2. Data Preparation</div>
+                    </div>
+                    <div class="pipeline-step-node" data-step="2">
+                        <div class="node-circle">🧠</div>
+                        <div class="node-label">3. Model Inference</div>
+                    </div>
+                    <div class="pipeline-step-node" data-step="3">
+                        <div class="node-circle">🎯</div>
+                        <div class="node-label">4. Risk Classification</div>
+                    </div>
+                    <div class="pipeline-step-node" data-step="4">
+                        <div class="node-circle">🛠️</div>
+                        <div class="node-label">5. Recommendations</div>
+                    </div>
+                    <div class="pipeline-step-node" data-step="5">
+                        <div class="node-circle">📊</div>
+                        <div class="node-label">6. Analytics Dashboard</div>
+                    </div>
+                </div>
+
+                <!-- Dynamic Detail Display -->
+                <div class="pipeline-detail-card" id="pipelineDetail">
+                    <div class="pipeline-detail-icon" id="pipelineDetailIcon">📁</div>
+                    <div class="pipeline-detail-body">
+                        <h3 id="pipelineDetailTitle">Step 1: Student Dataset Ingestion</h3>
+                        <p id="pipelineDetailDesc">Ingests structured academic and engagement records from data/students_1200.csv containing 1,200 records with 14 attributes including GPA, attendance, assignment completion, midterm score, study hours, LMS activity, stress level, and tuition status.</p>
+                        <span class="pipeline-code-badge" id="pipelineDetailBadge">data/students_1200.csv (1,200 Rows × 14 Columns)</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Synthetic Data Disclosure & Roadmap Distinction -->
+            <div class="prototype-notice-card">
+                <div class="notice-icon">⚠️</div>
+                <div class="notice-content">
+                    <h4>Prototype Transparency & Synthetic Data Disclosure</h4>
+                    <p>The EduPulse AI machine learning model and demonstration analytics operate on <strong>1,200 synthetic student records</strong> generated using NumPy Gaussian distributions and latent capability correlations (<code style="color: var(--accent-mint);">generate_data.py</code>). The 90.0% evaluation accuracy reflects this controlled synthetic benchmark. These predictions demonstrate algorithmic feasibility and must <strong>not be interpreted as validated real-world institutional outcomes</strong> without formal institutional review and multi-cohort empirical validation.</p>
+                </div>
+            </div>
+
+            <!-- Interactive What-If Mini-Simulator -->
+            <div id="simulator" class="simulator-box">
+                <div class="simulator-header">
+                    <h4>
+                        <span>🔮</span>
+                        <span>Interactive What-If Scenario Planner</span>
+                    </h4>
+                    <span class="badge">LIVE CALCULATION</span>
+                </div>
+                <p style="font-size: 0.88rem; color: var(--text-muted); margin-bottom: 1.5rem;">
+                    Test the real-time parameter sensitivity logic implemented in <code style="color: var(--accent-mint);">app.py</code> and <code style="color: var(--accent-mint);">model_utils.py</code>. Adjust student factors to watch the predicted risk tier and Success Score update dynamically:
+                </p>
+
+                <div class="simulator-grid">
+                    <div class="sim-slider-group">
+                        <div class="sim-slider-row">
+                            <div class="sim-slider-labels">
+                                <span>Lecture Attendance Rate:</span>
+                                <span id="valAttendance">78%</span>
+                            </div>
+                            <input type="range" id="simAttendance" min="45" max="100" value="78">
+                        </div>
+                        <div class="sim-slider-row">
+                            <div class="sim-slider-labels">
+                                <span>Grade Point Average (GPA):</span>
+                                <span id="valGpa">3.00</span>
+                            </div>
+                            <input type="range" id="simGpa" min="1.5" max="4.0" step="0.05" value="3.0">
+                        </div>
+                        <div class="sim-slider-row">
+                            <div class="sim-slider-labels">
+                                <span>Assignment Completion Rate:</span>
+                                <span id="valAssignment">80%</span>
+                            </div>
+                            <input type="range" id="simAssignment" min="40" max="100" value="80">
+                        </div>
+                        <div class="sim-slider-row">
+                            <div class="sim-slider-labels">
+                                <span>Weekly Study Hours:</span>
+                                <span id="valStudyHours">16 hrs</span>
+                            </div>
+                            <input type="range" id="simStudyHours" min="4" max="35" value="16">
+                        </div>
+                    </div>
+
+                    <div class="sim-output-card">
+                        <div class="sim-risk-label">Simulated Academic Risk Classification</div>
+                        <div id="simRiskBadge" class="sim-risk-badge risk-badge-low">Low Risk</div>
+
+                        <div class="sim-score-bar-wrap">
+                            <div class="sim-score-header">
+                                <span>Student Success Score Index:</span>
+                                <span id="simSuccessVal" style="font-weight: 700; color: var(--text-primary); font-family: var(--font-mono);">78.2 / 100</span>
+                            </div>
+                            <div class="sim-progress-track">
+                                <div id="simProgressFill" class="sim-progress-fill" style="width: 78.2%;"></div>
+                            </div>
+                        </div>
+
+                        <p style="font-size: 0.76rem; color: var(--text-dim); margin-top: 1rem;">
+                            Formula: Evaluates distance from critical support thresholds (<code style="color: var(--accent-mint);">attendance &lt; 75%</code>, <code style="color: var(--accent-mint);">gpa &lt; 2.5</code>, <code style="color: var(--accent-mint);">assignment &lt; 70%</code>).
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==========================================================================
+         SECTION D: TECHNOLOGY STACK (VERIFIED REPOSITORY TOOLS ONLY)
+         ========================================================================== -->
+    <section id="stack" class="section">
+        <div class="container">
+            <div class="section-header">
+                <div class="section-tag">
+                    <span class="badge">VERIFIED TOOLING</span>
+                </div>
+                <h2 class="section-title">Implementation Technology Stack</h2>
+                <p class="section-description">Built with a modern, lightweight scientific computing and data visualization stack. Strictly verified against repository requirements and local runtime specifications.</p>
+            </div>
+
+            <div class="tech-grid">
+                <!-- TECH 1 -->
+                <div class="tech-card">
+                    <div class="tech-card-header">
+                        <div class="tech-icon-box">🐍</div>
+                        <div>
+                            <div class="tech-name">Python</div>
+                            <div class="tech-version">v3.14 Runtime</div>
+                        </div>
+                    </div>
+                    <p class="tech-desc">Core language executing all synthetic data generation, machine learning model training, mathematical transformations, and Streamlit execution.</p>
+                    <span class="tech-badge">Language Core</span>
+                </div>
+
+                <!-- TECH 2 -->
+                <div class="tech-card">
+                    <div class="tech-card-header">
+                        <div class="tech-icon-box">⚡</div>
+                        <div>
+                            <div class="tech-name">Streamlit</div>
+                            <div class="tech-version">v1.65.0 Framework</div>
+                        </div>
+                    </div>
+                    <p class="tech-desc">Powers the full-featured, responsive web interface, session state caching, multi-tab navigation, and interactive scenario simulator.</p>
+                    <span class="tech-badge">Web Application</span>
+                </div>
+
+                <!-- TECH 3 -->
+                <div class="tech-card">
+                    <div class="tech-card-header">
+                        <div class="tech-icon-box">🌲</div>
+                        <div>
+                            <div class="tech-name">Scikit-Learn</div>
+                            <div class="tech-version">v1.9.1 ML Library</div>
+                        </div>
+                    </div>
+                    <p class="tech-desc">Provides the RandomForestClassifier algorithm (120 estimators, depth 10) and stratified train/test split utilities with balanced class weights.</p>
+                    <span class="tech-badge">Machine Learning</span>
+                </div>
+
+                <!-- TECH 4 -->
+                <div class="tech-card">
+                    <div class="tech-card-header">
+                        <div class="tech-icon-box">🐼</div>
+                        <div>
+                            <div class="tech-name">Pandas</div>
+                            <div class="tech-version">v3.0.6 Analytics</div>
+                        </div>
+                    </div>
+                    <p class="tech-desc">Handles tabular DataFrame loading, multi-attribute cohort filtering, missing value audits, and sanitized CSV data export formatting.</p>
+                    <span class="tech-badge">Data Processing</span>
+                </div>
+
+                <!-- TECH 5 -->
+                <div class="tech-card">
+                    <div class="tech-card-header">
+                        <div class="tech-icon-box">🔢</div>
+                        <div>
+                            <div class="tech-name">NumPy</div>
+                            <div class="tech-version">v2.5.3 Vector Math</div>
+                        </div>
+                    </div>
+                    <p class="tech-desc">Executes random Gaussian probability distributions for data generation, vector clipping, and array-based normalization calculations.</p>
+                    <span class="tech-badge">Numerical Math</span>
+                </div>
+
+                <!-- TECH 6 -->
+                <div class="tech-card">
+                    <div class="tech-card-header">
+                        <div class="tech-icon-box">📈</div>
+                        <div>
+                            <div class="tech-name">Plotly</div>
+                            <div class="tech-version">v7.1.0 Visualization</div>
+                        </div>
+                    </div>
+                    <p class="tech-desc">Renders interactive, GPU-accelerated dark emerald visualizations: risk distribution bars, GPA vs Attendance scatters, and radar profiles.</p>
+                    <span class="tech-badge">Interactive Charts</span>
+                </div>
+
+                <!-- TECH 7 -->
+                <div class="tech-card">
+                    <div class="tech-card-header">
+                        <div class="tech-icon-box">💾</div>
+                        <div>
+                            <div class="tech-name">Joblib & SHA-256</div>
+                            <div class="tech-version">v1.6.0 Serialization</div>
+                        </div>
+                    </div>
+                    <p class="tech-desc">Serializes the trained Random Forest model artifact and validates file integrity with SHA-256 cryptographic checksums before inference.</p>
+                    <span class="tech-badge">Artifact Security</span>
+                </div>
+
+                <!-- TECH 8 -->
+                <div class="tech-card">
+                    <div class="tech-card-header">
+                        <div class="tech-icon-box">🌐</div>
+                        <div>
+                            <div class="tech-name">HTML, CSS & JS</div>
+                            <div class="tech-version">Vanilla Prototype</div>
+                        </div>
+                    </div>
+                    <p class="tech-desc">Powers this interactive architecture blueprint: responsive CSS grid layouts, SVG directional connectors, and vanilla JavaScript simulators.</p>
+                    <span class="tech-badge">Showcase Frontend</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==========================================================================
+         SECTION F: ARCHITECTURE SUMMARY (5 CORE CARDS)
+         ========================================================================== -->
+    <section id="summary" class="section">
+        <div class="container">
+            <div class="section-header">
+                <div class="section-tag">
+                    <span class="badge">EXECUTIVE SUMMARY</span>
+                </div>
+                <h2 class="section-title">Architecture Summary</h2>
+                <p class="section-description">A concise architectural digest summarizing the responsibilities and technical roles of each core layer in EduPulse AI.</p>
+            </div>
+
+            <div class="summary-grid">
+                <!-- CARD 1 -->
+                <div class="summary-card">
+                    <div class="summary-num">Layer 01</div>
+                    <h3 class="summary-title">Input Layer</h3>
+                    <p class="summary-text">Ingests multi-dimensional academic performance, attendance logs, LMS digital activity, and well-being metrics from campus records into structured tabular schemas.</p>
+                </div>
+
+                <!-- CARD 2 -->
+                <div class="summary-card">
+                    <div class="summary-num">Layer 02</div>
+                    <h3 class="summary-title">Processing Layer</h3>
+                    <p class="summary-text">Validates data integrity, enforces feature vector alignment, computes cohort-level benchmarks, and leverages in-memory caching for zero-latency retrieval.</p>
+                </div>
+
+                <!-- CARD 3 -->
+                <div class="summary-card">
+                    <div class="summary-num">Layer 03</div>
+                    <h3 class="summary-title">ML Layer</h3>
+                    <p class="summary-text">Executes a balanced 120-tree Random Forest classifier with SHA-256 integrity verification, generating calibrated risk probabilities and Z-score indicator impact rankings.</p>
+                </div>
+
+                <!-- CARD 4 -->
+                <div class="summary-card">
+                    <div class="summary-num">Layer 04</div>
+                    <h3 class="summary-title">Application Layer</h3>
+                    <p class="summary-text">Delivers an interactive Streamlit analytics portal featuring Plotly data visualizations, student drill-downs, search directories, and sensitivity scenario simulators.</p>
+                </div>
+
+                <!-- CARD 5 -->
+                <div class="summary-card">
+                    <div class="summary-num">Layer 05</div>
+                    <h3 class="summary-title">Decision-Support</h3>
+                    <p class="summary-text">Translates predictive outputs into prioritized, actionable interventions and personalized recovery roadmaps that empower educators to proactively prevent student attrition.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==========================================================================
+         SECTION G: FOOTER
+         ========================================================================== -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-top">
+                <div class="footer-brand">
+                    <h3>EduPulse AI | Smart Campus Analytics & Student Success</h3>
+                    <p>AI Solution Architecture & End-to-End Workflow Prototype</p>
+                </div>
+                <div class="footer-links">
+                    <a href="#diagram">System Diagram</a>
+                    <a href="#workflow">Workflow</a>
+                    <a href="#pipeline">AI Pipeline</a>
+                    <a href="#simulator">Simulator</a>
+                    <a href="#stack">Tech Stack</a>
+                    <a href="https://github.com/vansh-8300/EduPulse-AI" target="_blank" rel="noopener">GitHub Repository ↗</a>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <div class="footer-disclaimer">
+                    <strong>Hackathon & Proof-of-Concept Disclosure:</strong> EduPulse AI is an educational technology prototype. The dataset (<code style="color: var(--accent-mint);">students_1200.csv</code>) is synthetically generated for demonstration, and model performance metrics reflect synthetic benchmarks. This platform is not validated for high-stakes institutional academic decisions without empirical campus calibration.
+                </div>
+                <div>
+                    &copy; 2026 EduPulse AI. All rights reserved.
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="assets/architecture.js"></script>
+</body>
+</html>
