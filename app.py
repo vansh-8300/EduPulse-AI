@@ -6,9 +6,7 @@ Main Streamlit Web Application (Dark Green AI Intelligence Edition)
 import os
 import streamlit as st
 import pandas as pd
-import numpy as np
 import plotly.express as px
-import plotly.graph_objects as go
 
 from src.data_loader import load_student_data, get_filtered_students, get_cohort_kpis
 from src.model_utils import load_model, predict_student_risk, explain_student_indicators, predict_placement_risk
@@ -342,6 +340,9 @@ if app_mode == "📊 Dashboard Overview":
     </div>
     """, unsafe_allow_html=True)
 
+    if len(filtered_df) == 0:
+        st.info("ℹ️ No students match the current sidebar filter selection. Reset or broaden filters to view cohort metrics.")
+
     kpis = get_cohort_kpis(filtered_df)
 
     # KPI Row
@@ -465,7 +466,7 @@ if app_mode == "📊 Dashboard Overview":
 
     with c3:
         st.subheader("🏢 Risk Breakdown by Major / Department")
-        dept_risk = pd.crosstab(filtered_df["major"], filtered_df["risk_level"]).reset_index()
+        dept_risk = pd.crosstab(filtered_df["major"], filtered_df["risk_level"]).reindex(columns=["High", "Medium", "Low"], fill_value=0).reset_index()
         fig_dept = px.bar(
             dept_risk,
             x="major",
@@ -479,7 +480,7 @@ if app_mode == "📊 Dashboard Overview":
 
     with c4:
         st.subheader("🎓 Risk Breakdown by Grade Level")
-        grade_risk = pd.crosstab(filtered_df["grade_level"], filtered_df["risk_level"]).reset_index()
+        grade_risk = pd.crosstab(filtered_df["grade_level"], filtered_df["risk_level"]).reindex(columns=["High", "Medium", "Low"], fill_value=0).reset_index()
         fig_grade = px.bar(
             grade_risk,
             x="grade_level",

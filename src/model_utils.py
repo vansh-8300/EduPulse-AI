@@ -5,7 +5,6 @@ Handles model loading, inference, risk probability calculation, and feature indi
 
 import os
 import joblib
-import numpy as np
 import pandas as pd
 
 MODEL_PATH = "models/risk_model.pkl"
@@ -62,11 +61,19 @@ def predict_student_risk(student_data, artifact=None):
     model = artifact["model"]
     feature_cols = artifact["features"]
 
-    # Prepare feature vector
+    # Prepare feature vector with input validation
     if isinstance(student_data, dict):
+        missing = [c for c in feature_cols if c not in student_data]
+        if missing:
+            raise ValueError(f"Missing required feature columns for prediction: {missing}")
         input_df = pd.DataFrame([student_data])[feature_cols]
     else:
+        missing = [c for c in feature_cols if c not in student_data.index]
+        if missing:
+            raise ValueError(f"Missing required feature columns for prediction: {missing}")
         input_df = pd.DataFrame([student_data[feature_cols].to_dict()])[feature_cols]
+
+    input_df = input_df.astype(float)
 
     predicted_class = model.predict(input_df)[0]
     probabilities = model.predict_proba(input_df)[0]
@@ -150,12 +157,10 @@ def explain_student_indicators(student_data, artifact=None):
 
         # Stress level: higher is worse; for others: lower is worse
         if feat == "stress_level":
-            diff = val - mean_val
-            z_score = diff / std_val
+            z_score = (val - mean_val) / std_val
             is_risk = z_score > 0.5
             is_strength = z_score < -0.5
         else:
-            diff = mean_val - val
             z_score = (val - mean_val) / std_val
             is_risk = z_score < -0.5
             is_strength = z_score > 0.5

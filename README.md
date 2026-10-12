@@ -73,10 +73,19 @@ EduPulse_AI/
 ├── prototype_backup.html   # Preserved backup of legacy presentation prototype
 ├── .gitignore              # Git ignore rules for virtualenvs & cache
 ├── README.md               # Project documentation & setup guide
+├── tests/                  # Automated pytest test suite
+│   ├── conftest.py         # Pytest fixtures & mock data setup
+│   ├── test_data_loader.py # Data loader, schema & regex filter tests
+│   ├── test_model_utils.py # Model integrity, prediction & explanation tests
+│   ├── test_recommendations.py # Prescriptive intervention engine tests
+│   ├── test_api_endpoints.py # FastAPI TestClient integration tests
+│   ├── test_auth_helpers.py # Firebase auth mock tests & error mappings
+│   └── test_security_audit.py # Automated secret scanning & gitignore tests
 ├── data/
 │   └── students_1200.csv   # Generated student dataset (1,200 records)
 ├── models/
-│   └── risk_model.pkl      # Saved Random Forest model artifact
+│   ├── risk_model.pkl      # Saved Random Forest model artifact
+│   └── risk_model.pkl.sha256 # SHA-256 integrity checksum
 └── src/
     ├── __init__.py         # Package initializer
     ├── data_loader.py      # Data loading, filtering & KPI computation
@@ -117,11 +126,32 @@ python generate_data.py
 python train_model.py
 ```
 
-### 4. Run the Streamlit Dashboard Locally
+### 4. Run the Automated Test Suite
+```bash
+pytest tests/ -v
+```
+
+### 5. Optional Secrets Configuration
+EduPulse AI works out-of-the-box with pre-configured client authentication for evaluation. For custom Firebase projects, you can configure your API key in `.streamlit/secrets.toml` (which is excluded from Git):
+```toml
+FIREBASE_API_KEY = <YOUR_FIREBASE_API_KEY>
+```
+Or via an environment variable:
+```bash
+export FIREBASE_API_KEY=<YOUR_FIREBASE_API_KEY>
+```
+
+### 6. Run the Streamlit Dashboard Locally
 ```bash
 python -m streamlit run app.py
 ```
 Open your browser and navigate to `http://localhost:8501`.
+
+### 7. Run the Optional FastAPI Backend Service
+```bash
+uvicorn api:app --reload --port 8000
+```
+API documentation will be available at `http://localhost:8000/docs`.
 
 ---
 

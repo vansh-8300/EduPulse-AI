@@ -34,8 +34,8 @@ def get_filtered_students(df, major=None, grade_level=None, risk_level=None, sea
     if search_query:
         query = search_query.strip().lower()
         filtered = filtered[
-            filtered["name"].str.lower().str.contains(query) |
-            filtered["student_id"].str.lower().str.contains(query)
+            filtered["name"].str.lower().str.contains(query, regex=False) |
+            filtered["student_id"].str.lower().str.contains(query, regex=False)
         ]
 
     return filtered
