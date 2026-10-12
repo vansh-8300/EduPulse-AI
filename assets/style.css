@@ -378,3 +378,365 @@ section[data-testid="stSidebar"] {
 ::-webkit-scrollbar-thumb:hover {
     background: var(--secondary-accent);
 }
+
+/* ==========================================================================
+   AUTHENTICATION INTERFACE (Dark Emerald AI SaaS Theme)
+   Scoped strictly to .st-key-auth_card and auth viewport to preserve dashboard
+   ========================================================================== */
+
+/* 1. Deep green-black background with ambient emerald glow and technical grid */
+.stApp:has(.st-key-auth_card) {
+    background-color: #06110D !important;
+}
+
+.stApp:has(.st-key-auth_card) .main,
+.stApp:has(.st-key-auth_card) [data-testid="stAppViewContainer"] {
+    background-color: #06110D !important;
+    background-image: 
+        radial-gradient(ellipse 700px 520px at 50% 40%, rgba(16, 185, 129, 0.12) 0%, rgba(6, 17, 13, 0) 70%),
+        radial-gradient(circle 450px at 50% 16%, rgba(95, 242, 165, 0.08) 0%, transparent 60%),
+        radial-gradient(circle 550px at 85% 85%, rgba(10, 45, 32, 0.15) 0%, transparent 70%),
+        linear-gradient(rgba(95, 242, 165, 0.025) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(95, 242, 165, 0.025) 1px, transparent 1px) !important;
+    background-size: 100% 100%, 100% 100%, 100% 100%, 36px 36px, 36px 36px !important;
+    background-position: center, center, center, 0 0, 0 0 !important;
+    min-height: 100vh !important;
+}
+
+/* Keep login view uncluttered: hide empty sidebar and toolbar controls */
+.stApp:has(.st-key-auth_card) [data-testid="stSidebar"],
+.stApp:has(.st-key-auth_card) [data-testid="collapsedControl"],
+.stApp:has(.st-key-auth_card) [data-testid="stToolbarActions"],
+.stApp:has(.st-key-auth_card) [data-testid="stAppDeployButton"] {
+    display: none !important;
+}
+
+.stApp:has(.st-key-auth_card) header[data-testid="stHeader"] {
+    background: transparent !important;
+}
+
+/* Constrain main block container width for auth screen */
+.stApp:has(.st-key-auth_card) [data-testid="stMainBlockContainer"] {
+    max-width: 580px !important;
+    padding-top: 3.5rem !important;
+    padding-bottom: 3.5rem !important;
+    padding-left: 1.25rem !important;
+    padding-right: 1.25rem !important;
+    margin: 0 auto !important;
+}
+
+/* Ensure center column fills the 520px container cleanly */
+.stApp:has(.st-key-auth_card) [data-testid="stHorizontalBlock"] {
+    display: flex !important;
+    justify-content: center !important;
+}
+
+.stApp:has(.st-key-auth_card) [data-testid="stHorizontalBlock"] > [data-testid="stColumn"]:first-child,
+.stApp:has(.st-key-auth_card) [data-testid="stHorizontalBlock"] > [data-testid="stColumn"]:last-child {
+    display: none !important;
+}
+
+.stApp:has(.st-key-auth_card) [data-testid="stHorizontalBlock"] > [data-testid="stColumn"]:nth-child(2) {
+    width: 100% !important;
+    flex: 1 1 100% !important;
+    max-width: 100% !important;
+}
+
+/* 2. Centered Glassmorphism Card Container */
+div.st-key-auth_card {
+    background: rgba(10, 28, 20, 0.72) !important;
+    backdrop-filter: blur(20px) !important;
+    -webkit-backdrop-filter: blur(20px) !important;
+    border: 1px solid rgba(95, 242, 165, 0.2) !important;
+    border-radius: 20px !important;
+    box-shadow: 
+        0 24px 60px -12px rgba(0, 0, 0, 0.75),
+        0 0 40px -8px rgba(16, 185, 129, 0.14),
+        inset 0 1px 0 rgba(255, 255, 255, 0.08) !important;
+    padding: 2.2rem 2.2rem !important;
+    max-width: 520px !important;
+    width: 100% !important;
+    margin: 0 auto !important;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease !important;
+}
+
+div.st-key-auth_card:hover {
+    border-color: rgba(95, 242, 165, 0.3) !important;
+    box-shadow: 
+        0 28px 70px -12px rgba(0, 0, 0, 0.8),
+        0 0 45px -5px rgba(16, 185, 129, 0.18),
+        inset 0 1px 0 rgba(255, 255, 255, 0.12) !important;
+}
+
+/* Remove default inner form border so it blends seamlessly into the card */
+div.st-key-auth_card [data-testid="stForm"] {
+    border: none !important;
+    padding: 0 !important;
+    background: transparent !important;
+}
+
+/* 3. Branding & Header Styling */
+.auth-brand-header {
+    text-align: center;
+    margin-bottom: 1.5rem;
+}
+
+.auth-logo-badge {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 62px;
+    height: 62px;
+    border-radius: 18px;
+    background: linear-gradient(135deg, rgba(16, 185, 129, 0.18) 0%, rgba(95, 242, 165, 0.06) 100%);
+    border: 1px solid rgba(95, 242, 165, 0.32);
+    box-shadow: 0 0 25px rgba(16, 185, 129, 0.28), inset 0 1px 0 rgba(255, 255, 255, 0.15);
+    margin-bottom: 0.8rem;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.auth-logo-badge:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 0 35px rgba(95, 242, 165, 0.45), inset 0 1px 0 rgba(255, 255, 255, 0.2);
+}
+
+.auth-logo-icon {
+    font-size: 2.2rem;
+    line-height: 1;
+    filter: drop-shadow(0 0 10px rgba(95, 242, 165, 0.5));
+}
+
+.auth-brand-title {
+    font-size: 2.05rem !important;
+    font-weight: 800 !important;
+    color: #F0FDF4 !important;
+    margin: 0 0 0.35rem 0 !important;
+    letter-spacing: -0.03em !important;
+    text-shadow: 0 2px 10px rgba(0, 0, 0, 0.4);
+}
+
+.auth-brand-subtitle {
+    color: #9CB7A5;
+    font-size: 0.92rem;
+    font-weight: 500;
+    letter-spacing: -0.01em;
+    margin-bottom: 0.85rem;
+}
+
+.auth-secure-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    padding: 0.28rem 0.85rem;
+    background: rgba(95, 242, 165, 0.08);
+    border: 1px solid rgba(95, 242, 165, 0.28);
+    border-radius: 9999px;
+    font-size: 0.68rem;
+    font-weight: 700;
+    color: #5FF2A5;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    box-shadow: 0 0 14px rgba(95, 242, 165, 0.12);
+}
+
+.auth-pulse-dot {
+    width: 6px;
+    height: 6px;
+    background-color: #5FF2A5;
+    border-radius: 50%;
+    box-shadow: 0 0 8px #5FF2A5;
+    animation: liveBlink 1.8s infinite ease-in-out;
+}
+
+/* 4. Login & Signup Tabs Styling */
+div.st-key-auth_card div[data-testid="stTabs"] {
+    width: 100% !important;
+}
+
+div.st-key-auth_card div[role="tablist"] {
+    border-bottom: 1px solid rgba(95, 242, 165, 0.15) !important;
+    gap: 1.5rem !important;
+    margin-bottom: 1.25rem !important;
+    justify-content: center !important;
+    display: flex !important;
+}
+
+div.st-key-auth_card div[data-testid="stTab"] {
+    background: transparent !important;
+    border: none !important;
+    padding: 0.6rem 0.5rem !important;
+    cursor: pointer !important;
+    transition: all 0.25s ease !important;
+}
+
+div.st-key-auth_card div[data-testid="stTab"] p {
+    color: #9CB7A5 !important;
+    font-weight: 600 !important;
+    font-size: 0.95rem !important;
+    transition: all 0.25s ease !important;
+}
+
+div.st-key-auth_card div[data-testid="stTab"]:hover p {
+    color: #F0FDF4 !important;
+}
+
+/* Active tab highlighted with #5FF2A5 */
+div.st-key-auth_card div[data-testid="stTab"][aria-selected="true"] p,
+div.st-key-auth_card div[data-testid="stTab"][data-selected="true"] p {
+    color: #5FF2A5 !important;
+    font-weight: 700 !important;
+    text-shadow: 0 0 14px rgba(95, 242, 165, 0.45) !important;
+}
+
+/* Active tab underline - replace harsh red with emerald glow */
+div.st-key-auth_card div[data-testid="stTab"] .react-aria-SelectionIndicator,
+div.st-key-auth_card .react-aria-SelectionIndicator {
+    background-color: #5FF2A5 !important;
+    height: 2.5px !important;
+    border-radius: 9999px !important;
+    box-shadow: 0 0 10px rgba(95, 242, 165, 0.8), 0 0 18px rgba(95, 242, 165, 0.4) !important;
+}
+
+/* Subheading inside active tab panel */
+div.st-key-auth_card h5 {
+    color: #9CB7A5 !important;
+    font-size: 0.9rem !important;
+    font-weight: 500 !important;
+    margin-top: 0 !important;
+    margin-bottom: 1.1rem !important;
+    text-align: center !important;
+    letter-spacing: -0.01em !important;
+}
+
+/* 5. Input Fields Styling */
+div.st-key-auth_card [data-testid="stWidgetLabel"] p {
+    color: #D1E7DD !important;
+    font-size: 0.86rem !important;
+    font-weight: 600 !important;
+    letter-spacing: 0.01em !important;
+    margin-bottom: 0.35rem !important;
+}
+
+/* Dark green input box instead of grey-purple */
+div.st-key-auth_card [data-testid="stTextInputRootElement"],
+div.st-key-auth_card .react-aria-TextField > div {
+    background-color: #081C14 !important;
+    border: 1px solid rgba(95, 242, 165, 0.22) !important;
+    border-radius: 10px !important;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease, background-color 0.2s ease !important;
+    box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.35) !important;
+}
+
+div.st-key-auth_card [data-testid="stTextInputRootElement"]:hover {
+    border-color: rgba(95, 242, 165, 0.45) !important;
+    background-color: #0A2218 !important;
+}
+
+/* Clear green focus ring */
+div.st-key-auth_card [data-testid="stTextInputRootElement"]:focus-within {
+    border-color: #5FF2A5 !important;
+    background-color: #0C261B !important;
+    box-shadow: 0 0 0 3px rgba(95, 242, 165, 0.25), inset 0 2px 4px rgba(0, 0, 0, 0.3) !important;
+}
+
+div.st-key-auth_card input[data-testid="stTextInputField"] {
+    color: #F0FDF4 !important;
+    font-size: 0.95rem !important;
+    padding: 0.65rem 0.85rem !important;
+    background: transparent !important;
+}
+
+/* Muted green placeholders */
+div.st-key-auth_card input[data-testid="stTextInputField"]::placeholder {
+    color: #5A7D69 !important;
+    opacity: 1 !important;
+}
+
+/* Preserve & style password visibility toggle */
+div.st-key-auth_card [data-testid="stTextInputRootElement"] button {
+    color: #9CB7A5 !important;
+    background: transparent !important;
+    border: none !important;
+    transition: color 0.2s ease, transform 0.2s ease !important;
+}
+
+div.st-key-auth_card [data-testid="stTextInputRootElement"] button:hover {
+    color: #5FF2A5 !important;
+    transform: scale(1.08) !important;
+}
+
+/* 6. Login and Signup Submit Buttons */
+div.st-key-auth_card [data-testid="stFormSubmitButton"] > button,
+div.st-key-auth_card button[kind="secondaryFormSubmit"],
+div.st-key-auth_card button[data-testid="stBaseButton-secondaryFormSubmit"] {
+    background: linear-gradient(135deg, #10B981 0%, #5FF2A5 100%) !important;
+    color: #041B11 !important;
+    font-weight: 700 !important;
+    font-size: 0.98rem !important;
+    letter-spacing: 0.02em !important;
+    border: 1px solid rgba(255, 255, 255, 0.2) !important;
+    border-radius: 12px !important;
+    padding: 0.72rem 1.4rem !important;
+    box-shadow: 0 4px 16px rgba(16, 185, 129, 0.35) !important;
+    transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1) !important;
+    cursor: pointer !important;
+    margin-top: 0.6rem !important;
+}
+
+div.st-key-auth_card [data-testid="stFormSubmitButton"] > button p,
+div.st-key-auth_card button[kind="secondaryFormSubmit"] p {
+    color: #041B11 !important;
+    font-weight: 700 !important;
+}
+
+div.st-key-auth_card [data-testid="stFormSubmitButton"] > button:hover,
+div.st-key-auth_card button[kind="secondaryFormSubmit"]:hover {
+    transform: translateY(-2px) !important;
+    box-shadow: 0 8px 24px rgba(95, 242, 165, 0.5), 0 0 20px rgba(16, 185, 129, 0.4) !important;
+    background: linear-gradient(135deg, #12C88D 0%, #76F5B5 100%) !important;
+    border-color: rgba(255, 255, 255, 0.35) !important;
+}
+
+div.st-key-auth_card [data-testid="stFormSubmitButton"] > button:active,
+div.st-key-auth_card button[kind="secondaryFormSubmit"]:active {
+    transform: translateY(0) !important;
+    box-shadow: 0 2px 10px rgba(16, 185, 129, 0.3) !important;
+}
+
+/* Responsive adjustment for small screens */
+@media (max-width: 580px) {
+    div.st-key-auth_card {
+        padding: 1.6rem 1.25rem !important;
+        border-radius: 16px !important;
+    }
+    .stApp:has(.st-key-auth_card) [data-testid="stMainBlockContainer"] {
+        padding-top: 1.5rem !important;
+        padding-left: 0.8rem !important;
+        padding-right: 0.8rem !important;
+    }
+    .auth-brand-title {
+        font-size: 1.75rem !important;
+    }
+}
+
+/* 7. Feedback & Validation Alert Styling */
+div.st-key-auth_card [data-testid="stAlert"] {
+    background: rgba(239, 68, 68, 0.12) !important;
+    border: 1px solid rgba(239, 68, 68, 0.35) !important;
+    border-radius: 10px !important;
+    color: #FECACA !important;
+    font-size: 0.88rem !important;
+    margin-top: 1rem !important;
+    backdrop-filter: blur(8px) !important;
+}
+
+div.st-key-auth_card [data-testid="stAlert"] [data-testid="stMarkdownContainer"] p {
+    color: #FECACA !important;
+    font-size: 0.88rem !important;
+}
+
+div.st-key-auth_card [data-testid="stAlert"] svg {
+    fill: #EF4444 !important;
+}
+
+

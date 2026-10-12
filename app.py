@@ -119,66 +119,73 @@ def translate_firebase_error(error_code: str) -> str:
 def render_login_page():
     col1, col2, col3 = st.columns([1, 2, 1])
     with col2:
-        st.markdown("""
-        <div style="text-align: center; margin-bottom: 2rem; margin-top: 1rem;">
-            <div style="font-size: 3rem; margin-bottom: 0.5rem;">🎓</div>
-            <h1 style="font-size: 2.2rem; font-weight: 800; color: #F0FDF4; margin: 0;">EduPulse AI</h1>
-            <div style="color: #9CB7A5; font-size: 1rem; margin-top: 0.4rem; font-weight: 500;">
-                Student Intelligence & Risk Analytics Portal
+        with st.container(key="auth_card"):
+            st.markdown("""
+            <div class="auth-brand-header">
+                <div class="auth-logo-badge">
+                    <span class="auth-logo-icon">🎓</span>
+                </div>
+                <h1 class="auth-brand-title">EduPulse AI</h1>
+                <div class="auth-brand-subtitle">
+                    Student Intelligence & Risk Analytics Portal
+                </div>
+                <div class="auth-secure-badge">
+                    <span class="auth-pulse-dot"></span>
+                    <span>SECURE ACCESS</span>
+                </div>
             </div>
-        </div>
-        """, unsafe_allow_html=True)
-        
-        tab_login, tab_signup = st.tabs(["🔐 Log In", "📝 Create Account"])
-        
-        with tab_login:
-            st.markdown("##### Access your EduPulse AI workspace")
-            with st.form("login_form", clear_on_submit=False):
-                email = st.text_input("School / Work Email", placeholder="you@school.edu", key="login_email").strip()
-                password = st.text_input("Password", type="password", placeholder="Enter your password", key="login_pw")
-                submit_login = st.form_submit_button("Log In to Dashboard", use_container_width=True)
-                
-                if submit_login:
-                    if not email or not password:
-                        st.error("Please enter both email address and password.")
-                    else:
-                        with st.spinner("Authenticating with Firebase..."):
-                            success, res = firebase_auth_sign_in(email, password)
-                            if success:
-                                st.session_state["authenticated"] = True
-                                st.session_state["user_email"] = res.get("email", email)
-                                st.session_state["user_name"] = res.get("displayName") or email.split("@")[0].capitalize()
-                                st.session_state["user_id"] = res.get("localId")
-                                st.success(f"Welcome back, {st.session_state['user_name']}!")
-                                st.rerun()
-                            else:
-                                st.error(translate_firebase_error(str(res)))
-        
-        with tab_signup:
-            st.markdown("##### Create a new advisor account")
-            with st.form("signup_form", clear_on_submit=False):
-                full_name = st.text_input("Full Name", placeholder="Aarav Sharma", key="su_name").strip()
-                email = st.text_input("School / Work Email", placeholder="you@school.edu", key="su_email").strip()
-                password = st.text_input("Password (min. 6 chars)", type="password", placeholder="Choose a secure password", key="su_pw")
-                submit_signup = st.form_submit_button("Create Account", use_container_width=True)
-                
-                if submit_signup:
-                    if not full_name or not email or not password:
-                        st.error("Please complete all fields.")
-                    elif len(password) < 6:
-                        st.error("Password must be at least 6 characters long.")
-                    else:
-                        with st.spinner("Creating Firebase account..."):
-                            success, res = firebase_auth_sign_up(email, password, display_name=full_name)
-                            if success:
-                                st.session_state["authenticated"] = True
-                                st.session_state["user_email"] = res.get("email", email)
-                                st.session_state["user_name"] = full_name
-                                st.session_state["user_id"] = res.get("localId")
-                                st.success(f"Account created successfully! Welcome, {full_name}!")
-                                st.rerun()
-                            else:
-                                st.error(translate_firebase_error(str(res)))
+            """, unsafe_allow_html=True)
+            
+            tab_login, tab_signup = st.tabs(["🔐 Log In", "📝 Create Account"])
+            
+            with tab_login:
+                st.markdown("##### Access your EduPulse AI workspace")
+                with st.form("login_form", clear_on_submit=False):
+                    email = st.text_input("School / Work Email", placeholder="you@school.edu", key="login_email").strip()
+                    password = st.text_input("Password", type="password", placeholder="Enter your password", key="login_pw")
+                    submit_login = st.form_submit_button("Log In to Dashboard", use_container_width=True)
+                    
+                    if submit_login:
+                        if not email or not password:
+                            st.error("Please enter both email address and password.")
+                        else:
+                            with st.spinner("Authenticating with Firebase..."):
+                                success, res = firebase_auth_sign_in(email, password)
+                                if success:
+                                    st.session_state["authenticated"] = True
+                                    st.session_state["user_email"] = res.get("email", email)
+                                    st.session_state["user_name"] = res.get("displayName") or email.split("@")[0].capitalize()
+                                    st.session_state["user_id"] = res.get("localId")
+                                    st.success(f"Welcome back, {st.session_state['user_name']}!")
+                                    st.rerun()
+                                else:
+                                    st.error(translate_firebase_error(str(res)))
+            
+            with tab_signup:
+                st.markdown("##### Create a new advisor account")
+                with st.form("signup_form", clear_on_submit=False):
+                    full_name = st.text_input("Full Name", placeholder="Aarav Sharma", key="su_name").strip()
+                    email = st.text_input("School / Work Email", placeholder="you@school.edu", key="su_email").strip()
+                    password = st.text_input("Password (min. 6 chars)", type="password", placeholder="Choose a secure password", key="su_pw")
+                    submit_signup = st.form_submit_button("Create Account", use_container_width=True)
+                    
+                    if submit_signup:
+                        if not full_name or not email or not password:
+                            st.error("Please complete all fields.")
+                        elif len(password) < 6:
+                            st.error("Password must be at least 6 characters long.")
+                        else:
+                            with st.spinner("Creating Firebase account..."):
+                                success, res = firebase_auth_sign_up(email, password, display_name=full_name)
+                                if success:
+                                    st.session_state["authenticated"] = True
+                                    st.session_state["user_email"] = res.get("email", email)
+                                    st.session_state["user_name"] = full_name
+                                    st.session_state["user_id"] = res.get("localId")
+                                    st.success(f"Account created successfully! Welcome, {full_name}!")
+                                    st.rerun()
+                                else:
+                                    st.error(translate_firebase_error(str(res)))
 
 # Check authentication state - block protected dashboard until authenticated
 if not st.session_state.get("authenticated", False):
